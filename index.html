@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slayyshine Jewels — The jewellery that doesn't leave.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g: #C4996A; --gl: #D4A96A;
+      --bg: #080808; --s1: #111111; --s2: #0F0F0F; --s3: #0A0A0A; --s4: #0D0B08; --s5: #060606;
+      --mut: rgba(255,255,255,0.5);
+      --fh: 'Cormorant Garamond', Georgia, serif;
+      --fb: 'Jost', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: #fff; font-family: var(--fb); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--g); border-radius: 2px; }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes grain {
+      0%,100% { transform: translate(0,0); } 20% { transform: translate(-1%,-2%); }
+      40% { transform: translate(2%,1%); } 60% { transform: translate(-2%,2%); } 80% { transform: translate(1%,-1%); }
+    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .grain-anim { animation: grain 8s steps(10) infinite; }
+
+    .btn-gold { border: 1px solid #C4996A; color: #C4996A; background: transparent; cursor: pointer; font-family: var(--fb); transition: background .3s, color .3s; }
+    .btn-gold:hover { background: #C4996A; color: #080808; }
+    .icon-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,.65); padding: 0; display: flex; align-items: center; transition: color .2s; }
+    .icon-btn:hover { color: #fff; }
+    .nav-link { transition: opacity .2s; }
+    .nav-link:hover { opacity: 1 !important; }
+    .menu-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; font-family: var(--fb); line-height: 1; }
+
+    .product-img-wrap { overflow: hidden; }
+    .product-img-inner { width: 100%; transition: transform .4s ease; }
+    .product-card:hover .product-img-inner { transform: scale(1.04); }
+    .cart-btn-desktop { opacity: 0; transition: opacity .3s; }
+    .product-card:hover .cart-btn-desktop { opacity: 1; }
+
+    .ig-item { position: relative; overflow: hidden; cursor: pointer; }
+    .ig-overlay { position: absolute; inset: 0; background: rgba(196,153,106,.88); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .ig-item:hover .ig-overlay { opacity: 1; }
+
+    .mobile-menu { position: fixed; inset: 0; z-index: 200; background: rgba(8,8,8,.97); display: flex; align-items: center; justify-content: center; transform: translateX(100%); transition: transform .35s ease; }
+    .mobile-menu.open { transform: none; }
+
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .review-row { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+    .review-card { flex: 0 0 min(85vw, 340px); scroll-snap-align: start; }
+    .ig-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+    .difference-inner { display: flex; flex-direction: column; gap: 3rem; }
+    .editorial-inner { display: flex; flex-direction: column; gap: 2rem; }
+
+    @media (min-width: 640px) {
+      .review-row { overflow-x: visible; display: grid; grid-template-columns: repeat(3,1fr); scroll-snap-type: none; }
+      .review-card { flex: none; }
+    }
+    @media (min-width: 768px) {
+      .product-grid { grid-template-columns: repeat(4,1fr); }
+      .ig-grid { grid-template-columns: repeat(6,1fr); }
+      .footer-grid { grid-template-columns: 1.5fr 1fr 1.5fr; gap: 4rem; }
+      .difference-inner { flex-direction: row; align-items: flex-start; gap: 5rem; }
+      .editorial-inner { flex-direction: row; align-items: center; }
+      .hamburger-btn { display: none !important; }
+    }
+    @media (max-width: 767px) {
+      .nav-center { display: none !important; }
+      .cart-btn-desktop { opacity: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+// ─── TOKENS ───────────────────────────────────────────────────────────────────
+const G='#C4996A', GL='#D4A96A', BG='#080808';
+const S1='#111111', S2='#0F0F0F', S3='#0A0A0A', S4='#0D0B08', S5='#060606';
+const MUT='rgba(255,255,255,0.5)';
+const FH="'Cormorant Garamond',Georgia,serif", FB="'Jost',system-ui,sans-serif";
+const stripe='repeating-linear-gradient(-45deg,transparent,transparent 8px,rgba(196,153,106,0.025) 8px,rgba(196,153,106,0.025) 10px)';
+
+// ─── HOOK ─────────────────────────────────────────────────────────────────────
+// Returns [ref, className] — uses React state so reconciliation never fights us
+const useReveal = (immediate = false) => {
+  const r = useRef(null);
+  const [vis, setVis] = useState(immediate);
+  useEffect(() => {
+    if (immediate) { setVis(true); return; }
+    const el = r.current; if (!el) return;
+    const t = setTimeout(() => setVis(true), 150);
+    const o = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { clearTimeout(t); setVis(true); o.unobserve(el); }
+    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+    o.observe(el);
+    return () => { clearTimeout(t); o.disconnect(); };
+  }, []);
+  return [r, vis ? 'reveal visible' : 'reveal'];
+};
+
+// ─── ATOMS ────────────────────────────────────────────────────────────────────
+const Moon = ({ s=24, c=G, op=1, st={} }) => (
+  <svg width={s} height={s} viewBox="0 0 24 24" fill={c} style={{ opacity:op, ...st }} aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
+
+const Stars = () => (
+  <div style={{ display:'flex', gap:'2px' }}>
+    {[...Array(5)].map((_,i) => (
+      <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill={G} aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    ))}
+  </div>
+);
+
+const Lbl = ({ children, st={} }) => (
+  <p style={{ fontFamily:FB, fontSize:'9px', fontWeight:600, letterSpacing:'3px', textTransform:'uppercase', color:G, marginBottom:'12px', ...st }}>{children}</p>
+);
+const HLine = ({ op=0.4 }) => <div style={{ height:'1px', background:`rgba(196,153,106,${op})` }}/>;
+const GoldBtn = ({ children, st={}, ...rest }) => (
+  <button className="btn-gold" style={{ padding:'13px 38px', borderRadius:'999px', fontFamily:FB, fontSize:'11px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', ...st }} {...rest}>{children}</button>
+);
+
+const Logo = ({ size=20 }) => (
+  <div style={{ display:'flex', alignItems:'center', gap:'8px', userSelect:'none', cursor:'pointer' }}>
+    <Moon s={size}/>
+    <span style={{ fontFamily:FH, fontStyle:'italic', fontSize:`${size+1}px`, fontWeight:500, letterSpacing:'0.3px' }}>slayyshine</span>
+    <span style={{ fontFamily:FB, fontSize:'7px', fontWeight:700, letterSpacing:'3px', color:G, textTransform:'uppercase', marginBottom:'-2px' }}>JEWELS</span>
+  </div>
+);
+
+// ─── PRODUCT MOTIFS ───────────────────────────────────────────────────────────
+const renderMotif = (m) => {
+  const p = { fill:'none', stroke:G, strokeWidth:'2', opacity:'0.22' };
+  if (m==='moon') return (<><circle {...p} cx="44" cy="50" r="27"/><circle fill="#0C0C0C" stroke="none" cx="57" cy="45" r="22"/><circle {...p} cx="44" cy="50" r="27" opacity="0.18"/></>);
+  if (m==='snake') return <path {...p} d="M22 70 C28 57 42 43 53 47 C64 51 74 37 80 25" strokeLinecap="round" strokeWidth="2.5"/>;
+  if (m==='ring') return <circle {...p} cx="50" cy="50" r="26" strokeWidth="2.5"/>;
+  if (m==='bangle') return <ellipse {...p} cx="50" cy="50" rx="30" ry="16" strokeWidth="2.5"/>;
+  if (m==='butterfly') return <path {...p} d="M50 50C36 35 12 42 22 56C32 70 50 58 50 50C50 58 68 70 78 56C88 42 64 35 50 50z" strokeWidth="1.5"/>;
+  if (m==='star') return <polygon {...p} points="50,15 57.5,37 80,37 62,49 69,72 50,58 31,72 38,49 20,37 42.5,37" strokeWidth="1.5"/>;
+  if (m==='pearl') return (<><circle {...p} cx="50" cy="36" r="18"/><line x1="50" y1="54" x2="50" y2="63" stroke={G} strokeWidth="1.5" opacity="0.18"/><circle {...p} cx="50" cy="70" r="8"/></>);
+  if (m==='stack') return (<><ellipse {...p} cx="50" cy="33" rx="24" ry="9"/><ellipse {...p} cx="50" cy="50" rx="27" ry="10"/><ellipse {...p} cx="50" cy="67" rx="22" ry="8"/></>);
+  return null;
+};
+
+const PImg = ({ m }) => (
+  <div className="product-img-inner" style={{ background:'#0C0C0C', aspectRatio:'1', position:'relative' }}>
+    <svg viewBox="0 0 100 100" style={{ position:'absolute', inset:0, width:'100%', height:'100%', padding:'18%' }}>
+      {renderMotif(m)}
+    </svg>
+  </div>
+);
+
+// ─── GRAIN ────────────────────────────────────────────────────────────────────
+const Grain = () => (
+  <svg className="grain-anim" aria-hidden="true" style={{ position:'fixed', top:'-50%', left:'-50%', width:'200%', height:'200%', opacity:0.03, pointerEvents:'none', zIndex:9999 }}>
+    <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/></filter>
+    <rect width="100%" height="100%" filter="url(#gf)"/>
+  </svg>
+);
+
+// ─── NAV ──────────────────────────────────────────────────────────────────────
+const NAVLINKS = [
+  { label:'Shop All',     href:'Shop.html#all' },
+  { label:'New Arrivals', href:'Shop.html#new-arrivals' },
+  { label:'Rings',        href:'Shop.html#rings' },
+  { label:'Necklaces',    href:'Shop.html#necklaces' },
+  { label:'Earrings',     href:'Shop.html#earrings' },
+  { label:'Bangles',      href:'Shop.html#bangles' },
+];
+
+const Nav = () => {
+  const [open,setOpen] = useState(false);
+  const [sc,setSc] = useState(false);
+  useEffect(() => {
+    const fn = () => setSc(window.scrollY > 40);
+    window.addEventListener('scroll', fn, { passive:true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  return (
+    <>
+      <nav style={{ position:'fixed', top:0, left:0, right:0, zIndex:100, height:64, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0 clamp(1rem,5vw,3rem)', background:sc?'rgba(8,8,8,0.93)':'transparent', borderBottom:sc?'1px solid rgba(196,153,106,0.12)':'none', backdropFilter:sc?'blur(12px)':'none', transition:'background .3s, border .3s' }}>
+        <Logo/>
+        <div className="nav-center" style={{ position:'absolute', left:'50%', transform:'translateX(-50%)', display:'flex', gap:'2rem' }}>
+          {NAVLINKS.map(l => (
+            <a key={l.label} href={l.href} className="nav-link" style={{ fontFamily:FB, fontSize:'10px', fontWeight:500, letterSpacing:'1.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.65)', opacity:0.65 }}>{l.label}</a>
+          ))}
+        </div>
+        <div style={{ display:'flex', alignItems:'center', gap:'18px' }}>
+          <button className="icon-btn" aria-label="Cart">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </button>
+          <button className="icon-btn hamburger-btn" onClick={() => setOpen(true)} aria-label="Menu">
+            <svg width="22" height="15" viewBox="0 0 22 15" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <line x1="0" y1="1" x2="22" y2="1"/><line x1="4" y1="7.5" x2="22" y2="7.5"/><line x1="0" y1="14" x2="22" y2="14"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <div className={`mobile-menu${open?' open':''}`} role="dialog" aria-modal="true">
+        <button className="menu-close" onClick={() => setOpen(false)}>✕</button>
+        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:'2.2rem', textAlign:'center' }}>
+          {[...NAVLINKS,{label:'About Us',href:'#'},{label:'Our Story',href:'#'}].map(l => (
+            <a key={l.label} href={l.href} onClick={() => setOpen(false)} style={{ fontFamily:FH, fontStyle:'italic', fontSize:'clamp(22px,5vw,34px)', color:'#FFF', letterSpacing:'0.5px' }}>{l.label}</a>
+          ))}
+          <div style={{ marginTop:'1rem', display:'flex', gap:'2rem' }}>
+            <a href="#" style={{ fontFamily:FB, fontSize:'10px', letterSpacing:'2px', color:G, textTransform:'uppercase' }}>Instagram ↗</a>
+            <a href="#" style={{ fontFamily:FB, fontSize:'10px', letterSpacing:'2px', color:G, textTransform:'uppercase' }}>WhatsApp ↗</a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+// ─── HERO ─────────────────────────────────────────────────────────────────────
+const Hero = () => {
+  const [r, cls] = useReveal(true);
+  return (
+    <section style={{ minHeight:'100vh', background:BG, display:'flex', alignItems:'center', justifyContent:'center', textAlign:'center', padding:'80px clamp(1.5rem,6vw,5rem) 80px', position:'relative', overflow:'hidden' }}>
+      <Moon s={340} op={0.05} st={{ position:'absolute', top:'-6%', right:'-7%', pointerEvents:'none' }}/>
+      <div ref={r} className={cls} style={{ maxWidth:'880px', position:'relative', zIndex:1 }}>
+        <Lbl>Demifine Jewellery</Lbl>
+        <h1 style={{ fontFamily:FH, fontSize:'clamp(40px,7.5vw,84px)', fontWeight:400, lineHeight:1.04, color:'#FAF9F7', marginBottom:'3rem', letterSpacing:'-0.5px', paddingBottom:'0.5rem' }}>
+          The jewellery that<br/><em>doesn't leave.</em>
+        </h1>
+        <p style={{ fontFamily:FB, fontSize:'13px', color:MUT, letterSpacing:'0.8px', lineHeight:1.75, maxWidth:'400px', margin:'0 auto 2.5rem' }}>
+          316L Titanium. PVD Gold. Built to be worn every single day.
+        </p>
+        <div style={{ display:'flex', gap:'1.2rem', justifyContent:'center', alignItems:'center', flexWrap:'wrap' }}>
+          <GoldBtn onClick={() => window.location.href='shop.html#all'}>Shop Now</GoldBtn>
+          <a href="#" style={{ fontFamily:FB, fontSize:'12px', color:'rgba(255,255,255,0.55)', letterSpacing:'1.5px', display:'inline-flex', alignItems:'center', gap:'7px', whiteSpace:'nowrap' }}>
+            Our Story <span style={{ color:G, fontSize:'16px' }}>→</span>
+          </a>
+        </div>
+      </div>
+      <div style={{ position:'absolute', bottom:0, left:0, right:0 }}><HLine op={0.4}/></div>
+    </section>
+  );
+};
+
+// ─── TRUST BAR ────────────────────────────────────────────────────────────────
+const TRUST = ['316L Medical-Grade Steel','PVD Gold Bonded','AAA Cubic Zirconia','Real Freshwater Pearls','Hypoallergenic','Waterproof','Tarnish-Free','Wears for Years'];
+
+const TrustBar = () => (
+  <div style={{ background:S2, padding:'14px 0', overflow:'hidden' }}>
+    <div style={{ display:'flex', animation:'marquee 32s linear infinite', width:'max-content', whiteSpace:'nowrap' }}>
+      {[...TRUST,...TRUST].map((t,i) => (
+        <span key={i} style={{ display:'inline-flex', alignItems:'center', gap:'16px', paddingRight:'16px' }}>
+          <span style={{ fontFamily:FB, fontSize:'10px', fontWeight:600, letterSpacing:'2.5px', textTransform:'uppercase', color:G }}>{t}</span>
+          <span style={{ color:G, fontSize:'7px', opacity:0.6 }}>◆</span>
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+// ─── PRODUCTS ─────────────────────────────────────────────────────────────────
+const PRODS = [
+  { id:1, n:'Celestial Moon Necklace', s:'Paperclip Chain · CZ Pendant',  p:'₹1,499', b:'NEW',        m:'moon' },
+  { id:2, n:'Serpent Stud Earrings',   s:'Snake Form · PVD Gold',          p:'₹999',   b:'BESTSELLER', m:'snake' },
+  { id:3, n:'Coil Snake Ring',         s:'Adjustable · PVD Gold',          p:'₹799',   b:null,         m:'ring' },
+  { id:4, n:'Serpent Bangle',          s:'Open Cuff · CZ Eye Detail',      p:'₹1,299', b:'NEW',        m:'bangle' },
+  { id:5, n:'Butterfly Midi Ring',     s:'Stackable · CZ Set',             p:'₹699',   b:null,         m:'butterfly' },
+  { id:6, n:'Star Compass Pendant',    s:'Layering Chain · CZ Halo',       p:'₹1,399', b:'BESTSELLER', m:'star' },
+  { id:7, n:'Pearl Drop Earrings',     s:'Freshwater Pearl · Gold Post',   p:'₹1,199', b:'NEW',        m:'pearl' },
+  { id:8, n:'Triple Stack Set',        s:'3 Rings · Mix Finish',           p:'₹1,799', b:'BESTSELLER', m:'stack' },
+];
+
+const PCard = ({ p }) => {
+  const [hov,setHov] = useState(false);
+  return (
+    <div className="product-card" onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ background:S1, border:`1px solid rgba(196,153,106,${hov?0.28:0.12})`, borderRadius:'12px', overflow:'hidden', transition:'border-color .3s' }}>
+      <div className="product-img-wrap" style={{ position:'relative' }}>
+        <PImg m={p.m}/>
+        {p.b && (
+          <span style={{ position:'absolute', top:'10px', left:'10px', background:'rgba(5,5,5,0.92)', border:`1px solid ${G}`, color:G, fontFamily:FB, fontSize:'7px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', padding:'3px 9px', borderRadius:'999px' }}>
+            {p.b}
+          </span>
+        )}
+      </div>
+      <div style={{ padding:'14px 14px 16px' }}>
+        <p style={{ fontFamily:FH, fontSize:'17px', color:'#FAF9F7', marginBottom:'5px', lineHeight:1.25 }}>{p.n}</p>
+        <p style={{ fontFamily:FB, fontSize:'10.5px', color:MUT, marginBottom:'12px', letterSpacing:'0.2px' }}>{p.s}</p>
+        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:'8px' }}>
+          <span style={{ fontFamily:FB, fontSize:'14px', color:G, fontWeight:500 }}>{p.p}</span>
+          <button className="cart-btn-desktop btn-gold" style={{ padding:'6px 14px', borderRadius:'4px', fontSize:'8.5px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', flexShrink:0 }}>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Products = () => {
+  const [r, cls] = useReveal();
+  return (
+    <section ref={r} className={cls} style={{ background:BG, padding:'clamp(50px,8vw,90px) clamp(1.5rem,5vw,3rem)' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto' }}>
+        <Lbl>Collection</Lbl>
+        <h2 style={{ fontFamily:FH, fontStyle:'italic', fontSize:'clamp(30px,4vw,46px)', fontWeight:400, color:'#FAF9F7', marginBottom:'2rem', lineHeight:1.1 }}>New Arrivals</h2>
+        <div className="product-grid">{PRODS.map(p => <PCard key={p.id} p={p}/>)}</div>
+      </div>
+    </section>
+  );
+};
+
+// ─── DIFFERENCE ───────────────────────────────────────────────────────────────
+const STATS = [
+  { n:'5μ',   l:'PVD Bond Thickness' },
+  { n:'316L', l:'Medical Grade Steel' },
+  { n:'AAA',  l:'Zirconia Grade' },
+  { n:'0',    l:'Nickel. Zero.' },
+];
+
+const Difference = () => {
+  const [r, cls] = useReveal();
+  return (
+    <section ref={r} className={cls} style={{ background:S3, padding:'clamp(60px,9vw,110px) clamp(1.5rem,5vw,3rem)', borderTop:'1px solid rgba(196,153,106,0.2)' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto' }} className="difference-inner">
+        <div style={{ flex:'1 1 400px' }}>
+          <Lbl>Why Slayyshine</Lbl>
+          <h2 style={{ fontFamily:FH, fontSize:'clamp(28px,3.5vw,42px)', fontWeight:400, color:'#FAF9F7', marginBottom:'1.5rem', lineHeight:1.2 }}>
+            Not plated.<br/><em style={{ color:GL }}>Bonded.</em>
+          </h2>
+          <p style={{ fontFamily:FB, fontSize:'13px', color:MUT, lineHeight:1.9, maxWidth:'480px' }}>
+            Every other brand dips their jewellery in a 0.1 micron wash of gold and calls it plated. We use Physical Vapour Deposition — a process that fuses gold at 2.5–5 microns, at molecular level. Same process used in aerospace. Your jewellery won't remember it was ever not gold.
+          </p>
+        </div>
+        <div style={{ flex:'1 1 300px', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'16px' }}>
+          {STATS.map(s => (
+            <div key={s.l} style={{ padding:'28px 22px', background:'rgba(196,153,106,0.04)', border:'1px solid rgba(196,153,106,0.1)', borderRadius:'8px' }}>
+              <p style={{ fontFamily:FH, fontSize:'clamp(36px,4vw,54px)', color:G, fontWeight:400, lineHeight:1, marginBottom:'10px' }}>{s.n}</p>
+              <p style={{ fontFamily:FB, fontSize:'8px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', color:MUT }}>{s.l}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ─── EDITORIAL ────────────────────────────────────────────────────────────────
+const phBase = { background:'#0E0E0E', border:'1px solid rgba(196,153,106,0.1)', borderRadius:'4px', backgroundImage:stripe, display:'flex', alignItems:'center', justifyContent:'center' };
+const phTxt  = { fontFamily:FB, fontSize:'8px', color:'rgba(255,255,255,0.12)', letterSpacing:'2px', textTransform:'uppercase' };
+
+const Editorial = () => {
+  const [r, cls] = useReveal();
+  return (
+    <section ref={r} className={cls} style={{ background:S4, padding:'clamp(60px,8vw,100px) clamp(1.5rem,5vw,3rem)', position:'relative', overflow:'hidden' }}>
+      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 50% 50%,rgba(196,153,106,0.04) 0%,transparent 65%)', pointerEvents:'none' }}/>
+      <div style={{ maxWidth:'1280px', margin:'0 auto' }} className="editorial-inner">
+        <div style={{ flex:'1 1 400px', position:'relative', zIndex:1 }}>
+          <h2 style={{ fontFamily:FH, fontSize:'clamp(34px,5.5vw,64px)', fontWeight:400, lineHeight:1.02, color:'#FAF9F7', marginBottom:'2.5rem' }}>
+            Wear it to the gym.<br/>Wear it to bed.<br/><em style={{ color:GL }}>Just wear it.</em>
+          </h2>
+          <a href="Shop.html#all" style={{ fontFamily:FB, fontSize:'12px', letterSpacing:'2px', color:G, textTransform:'uppercase', display:'inline-flex', alignItems:'center', gap:'8px' }}>
+            Shop All Pieces <span style={{ fontSize:'16px' }}>→</span>
+          </a>
+        </div>
+        <div style={{ flex:'1 1 380px', display:'grid', gridTemplateColumns:'1fr 1fr', gridTemplateRows:'160px 160px', gap:'10px' }}>
+          <div style={{ ...phBase, gridRow:'span 2' }}><span style={{ ...phTxt, transform:'rotate(-90deg)', whiteSpace:'nowrap' }}>Product Shot</span></div>
+          <div style={{ ...phBase }}><span style={phTxt}>Detail Shot</span></div>
+          <div style={{ ...phBase }}><span style={phTxt}>Lifestyle</span></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ─── REVIEWS ──────────────────────────────────────────────────────────────────
+const REVS = [
+  { q:'"Wore the snake ring every day for 3 months — pool, gym, everything. Not a scratch. Not a fade. Never taking it off."', n:'Anika R.' },
+  { q:'"I\'ve spent money on \'gold\' jewellery my whole life only to have it turn my finger green in a week. This one actually stayed. I cried a little."', n:'Priya M.' },
+  { q:'"The celestial necklace looks exactly like the picture — honestly better in person. Packaging was premium too."', n:'Shreya K.' },
+];
+
+const Reviews = () => {
+  const [r, cls] = useReveal();
+  return (
+    <section ref={r} className={cls} style={{ background:BG, padding:'clamp(50px,8vw,90px) clamp(1.5rem,5vw,3rem)', borderTop:'1px solid rgba(196,153,106,0.15)' }}>
+      <div style={{ maxWidth:'1200px', margin:'0 auto' }}>
+        <Lbl st={{ textAlign:'center', marginBottom:'2rem' }}>Worn & Loved</Lbl>
+        <div className="review-row">
+          {REVS.map((rv,i) => (
+            <div key={i} className="review-card" style={{ background:S1, border:'1px solid rgba(196,153,106,0.12)', borderRadius:'12px', padding:'28px 24px' }}>
+              <Stars/>
+              <p style={{ fontFamily:FH, fontStyle:'italic', fontSize:'15px', color:'#FAF9F7', lineHeight:1.65, margin:'16px 0 20px' }}>{rv.q}</p>
+              <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+                <span style={{ fontFamily:FB, fontSize:'11px', color:MUT }}>{rv.n}</span>
+                <span style={{ display:'inline-flex', alignItems:'center', gap:'4px' }}>
+                  <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:'#4CAF50', display:'inline-block' }}/>
+                  <span style={{ fontFamily:FB, fontSize:'9px', color:'rgba(76,175,80,0.8)', letterSpacing:'0.3px' }}>Verified</span>
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ─── INSTAGRAM ────────────────────────────────────────────────────────────────
+const Instagram = () => {
+  const [r, cls] = useReveal();
+  return (
+    <section ref={r} className={cls} style={{ background:S2, padding:'clamp(50px,7vw,80px) clamp(1.5rem,5vw,3rem)' }}>
+      <div style={{ maxWidth:'1200px', margin:'0 auto' }}>
+        <Lbl st={{ textAlign:'center', marginBottom:'1.5rem', fontSize:'10px', letterSpacing:'4px' }}>@SLAYYSHINE.JEWELS</Lbl>
+        <div className="ig-grid" style={{ marginBottom:'1.5rem' }}>
+          {[...Array(6)].map((_,i) => (
+            <div key={i} className="ig-item" style={{ aspectRatio:'1', background:S1, border:'1px solid rgba(196,153,106,0.15)', backgroundImage:stripe }}>
+              <div className="ig-overlay">
+                <span style={{ fontFamily:FB, fontSize:'9px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', color:'#0A0A0A' }}>View on Instagram</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign:'center' }}>
+          <GoldBtn st={{ padding:'12px 32px', fontSize:'10px' }}>Follow Us ↗</GoldBtn>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ─── CTA BANNER ───────────────────────────────────────────────────────────────
+const CTABanner = () => {
+  const [r, cls] = useReveal();
+  return (
+    <section ref={r} className={cls} style={{ background:S4, padding:'clamp(60px,8vw,100px) clamp(1.5rem,5vw,3rem)', textAlign:'center', borderTop:'1px solid rgba(196,153,106,0.2)', borderBottom:'1px solid rgba(196,153,106,0.2)' }}>
+      <h2 style={{ fontFamily:FH, fontSize:'clamp(30px,4.5vw,52px)', fontWeight:400, color:'#FAF9F7', marginBottom:'1rem', lineHeight:1.1 }}>
+        Your skin deserves better.
+      </h2>
+      <p style={{ fontFamily:FB, fontSize:'13px', color:MUT, marginBottom:'2.5rem', letterSpacing:'0.5px' }}>
+        Free shipping above ₹999. Easy returns. Ships in 2–3 days.
+      </p>
+      <GoldBtn onClick={() => window.location.href='shop.html#all'}>Shop the Collection</GoldBtn>
+    </section>
+  );
+};
+
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
+const Footer = () => {
+  const [email,setEmail] = useState('');
+  const [subbed,setSubbed] = useState(false);
+  return (
+    <footer style={{ background:S5, borderTop:'1px solid rgba(196,153,106,0.1)' }}>
+      <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'clamp(50px,7vw,80px) clamp(1.5rem,5vw,3rem)' }} className="footer-grid">
+        <div>
+          <Logo size={18}/>
+          <p style={{ fontFamily:FB, fontSize:'12px', color:MUT, lineHeight:1.8, maxWidth:'260px', margin:'16px 0 24px' }}>The jewellery that doesn't leave.</p>
+          <div style={{ display:'flex', gap:'14px' }}>
+            <a href="https://instagram.com/slayyshine.jewels" className="icon-btn" aria-label="Instagram">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2"/>
+              </svg>
+            </a>
+            <a href="#" className="icon-btn" aria-label="WhatsApp">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.3rem 1.5rem' }}>
+            {['Shop All','New Arrivals','Rings','Necklaces','Earrings','Bangles','About Us','Our Materials','Care Guide','Contact'].map(l => (
+              <a key={l} href="#" className="nav-link" style={{ fontFamily:FB, fontSize:'11.5px', color:'rgba(255,255,255,0.48)', padding:'5px 0', display:'block', opacity:0.48 }}>{l}</a>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p style={{ fontFamily:FH, fontSize:'20px', color:'#FAF9F7', marginBottom:'8px', fontWeight:400 }}>Stay in the loop</p>
+          <p style={{ fontFamily:FB, fontSize:'11px', color:MUT, marginBottom:'1.2rem', letterSpacing:'0.3px' }}>No spam. New drops only.</p>
+          {subbed ? (
+            <p style={{ fontFamily:FH, fontStyle:'italic', fontSize:'17px', color:G }}>You're in. ✦</p>
+          ) : (
+            <div style={{ display:'flex', gap:'8px' }}>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com"
+                style={{ flex:1, background:'rgba(255,255,255,0.04)', border:'1px solid rgba(196,153,106,0.25)', borderRadius:'4px', padding:'10px 14px', fontFamily:FB, fontSize:'12px', color:'#fff', outline:'none', caretColor:G, minWidth:0 }}/>
+              <button className="btn-gold" onClick={() => email && setSubbed(true)} style={{ padding:'10px 20px', borderRadius:'4px', fontFamily:FB, fontSize:'10px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', whiteSpace:'nowrap' }}>Subscribe</button>
+            </div>
+          )}
+        </div>
+      </div>
+      <div style={{ borderTop:'1px solid rgba(255,255,255,0.05)', padding:'16px clamp(1.5rem,5vw,3rem)', textAlign:'center' }}>
+        <p style={{ fontFamily:FB, fontSize:'10px', color:'rgba(255,255,255,0.2)', letterSpacing:'0.5px' }}>© 2025 Slayyshine Jewels · Made with intention · @slayyshine.jewels</p>
+      </div>
+    </footer>
+  );
+};
+
+// ─── APP ──────────────────────────────────────────────────────────────────────
+const App = () => (
+  <>
+    <Grain/>
+    <Nav/>
+    <Hero/>
+    <TrustBar/>
+    <Products/>
+    <Difference/>
+    <Editorial/>
+    <Reviews/>
+    <Instagram/>
+    <CTABanner/>
+    <Footer/>
+  </>
+);
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

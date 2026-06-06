@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Slayyshine Jewels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --g: #C4996A; --gl: #D4A96A;
+      --bg: #080808; --s1: #111111; --s2: #0F0F0F;
+      --mut: rgba(255,255,255,0.5);
+      --fh: 'Cormorant Garamond', Georgia, serif;
+      --fb: 'Jost', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: #fff; font-family: var(--fb); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--g); border-radius: 2px; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    .btn-gold { border: 1px solid #C4996A; color: #C4996A; background: transparent; cursor: pointer; font-family: var(--fb); transition: background .3s, color .3s; }
+    .btn-gold:hover { background: #C4996A; color: #080808; }
+    .icon-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,.65); padding: 0; display: flex; align-items: center; transition: color .2s; }
+    .icon-btn:hover { color: #fff; }
+    .nav-link { transition: opacity .2s; }
+    .nav-link:hover { opacity: 1 !important; }
+    .menu-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; font-family: var(--fb); line-height: 1; }
+    .mobile-menu { position: fixed; inset: 0; z-index: 200; background: rgba(8,8,8,.97); display: flex; align-items: center; justify-content: center; transform: translateX(100%); transition: transform .35s ease; }
+    .mobile-menu.open { transform: none; }
+
+    .product-img-wrap { overflow: hidden; }
+    .product-img-inner { width: 100%; transition: transform .4s ease; }
+    .product-card:hover .product-img-inner { transform: scale(1.04); }
+    .cart-btn { opacity: 0; transition: opacity .3s; }
+    .product-card:hover .cart-btn { opacity: 1; }
+
+    .filter-pill { border: 1px solid rgba(196,153,106,0.25); color: rgba(255,255,255,0.5); background: transparent; cursor: pointer; font-family: var(--fb); font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 8px 20px; border-radius: 999px; transition: all .25s; white-space: nowrap; }
+    .filter-pill:hover { border-color: rgba(196,153,106,0.6); color: rgba(255,255,255,0.8); }
+    .filter-pill.active { border-color: #C4996A; color: #C4996A; background: rgba(196,153,106,0.06); }
+
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4,1fr); } }
+    @media (min-width: 768px) { .hamburger-btn { display: none !important; } }
+    @media (max-width: 767px) { .nav-center { display: none !important; } .cart-btn { opacity: 1 !important; } }
+
+    .card-enter { animation: fadeUp .45s ease forwards; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel">
+const { useState, useEffect, useRef, useMemo } = React;
+
+const G='#C4996A', GL='#D4A96A', BG='#080808';
+const S1='#111111', S2='#0F0F0F';
+const MUT='rgba(255,255,255,0.5)';
+const FH="'Cormorant Garamond',Georgia,serif", FB="'Jost',system-ui,sans-serif";
+const stripe='repeating-linear-gradient(-45deg,transparent,transparent 8px,rgba(196,153,106,0.025) 8px,rgba(196,153,106,0.025) 10px)';
+
+// ─── ALL PRODUCTS ──────────────────────────────────────────────────────────────
+const ALL_PRODUCTS = [
+  { id:1, n:'Celestial Moon Necklace',  s:'Paperclip Chain · CZ Pendant',  p:'₹1,499', b:'NEW',        m:'moon',      cats:['necklaces','new-arrivals'] },
+  { id:2, n:'Serpent Stud Earrings',    s:'Snake Form · PVD Gold',          p:'₹999',   b:'BESTSELLER', m:'snake',     cats:['earrings'] },
+  { id:3, n:'Coil Snake Ring',          s:'Adjustable · PVD Gold',          p:'₹799',   b:null,         m:'ring',      cats:['rings'] },
+  { id:4, n:'Serpent Bangle',           s:'Open Cuff · CZ Eye Detail',      p:'₹1,299', b:'NEW',        m:'bangle',    cats:['bangles','new-arrivals'] },
+  { id:5, n:'Butterfly Midi Ring',      s:'Stackable · CZ Set',             p:'₹699',   b:null,         m:'butterfly', cats:['rings'] },
+  { id:6, n:'Star Compass Pendant',     s:'Layering Chain · CZ Halo',       p:'₹1,399', b:'BESTSELLER', m:'star',      cats:['necklaces'] },
+  { id:7, n:'Pearl Drop Earrings',      s:'Freshwater Pearl · Gold Post',   p:'₹1,199', b:'NEW',        m:'pearl',     cats:['earrings','new-arrivals'] },
+  { id:8, n:'Triple Stack Set',         s:'3 Rings · Mix Finish',           p:'₹1,799', b:'BESTSELLER', m:'stack',     cats:['rings'] },
+];
+
+const FILTERS = [
+  { id:'all',          label:'Shop All' },
+  { id:'new-arrivals', label:'New Arrivals' },
+  { id:'rings',        label:'Rings' },
+  { id:'necklaces',    label:'Necklaces' },
+  { id:'earrings',     label:'Earrings' },
+  { id:'bangles',      label:'Bangles' },
+];
+
+const NAVLINKS = [
+  { id:'all',          label:'Shop All',     href:'shop.html#all' },
+  { id:'new-arrivals', label:'New Arrivals', href:'shop.html#new-arrivals' },
+  { id:'rings',        label:'Rings',        href:'shop.html#rings' },
+  { id:'necklaces',    label:'Necklaces',    href:'shop.html#necklaces' },
+  { id:'earrings',     label:'Earrings',     href:'shop.html#earrings' },
+  { id:'bangles',      label:'Bangles',      href:'shop.html#bangles' },
+];
+
+// ─── MOTIFS ───────────────────────────────────────────────────────────────────
+const renderMotif = (m) => {
+  const p = { fill:'none', stroke:G, strokeWidth:'2', opacity:'0.22' };
+  if (m==='moon') return (<><circle {...p} cx="44" cy="50" r="27"/><circle fill="#0C0C0C" stroke="none" cx="57" cy="45" r="22"/><circle {...p} cx="44" cy="50" r="27" opacity="0.18"/></>);
+  if (m==='snake') return <path {...p} d="M22 70 C28 57 42 43 53 47 C64 51 74 37 80 25" strokeLinecap="round" strokeWidth="2.5"/>;
+  if (m==='ring') return <circle {...p} cx="50" cy="50" r="26" strokeWidth="2.5"/>;
+  if (m==='bangle') return <ellipse {...p} cx="50" cy="50" rx="30" ry="16" strokeWidth="2.5"/>;
+  if (m==='butterfly') return <path {...p} d="M50 50C36 35 12 42 22 56C32 70 50 58 50 50C50 58 68 70 78 56C88 42 64 35 50 50z" strokeWidth="1.5"/>;
+  if (m==='star') return <polygon {...p} points="50,15 57.5,37 80,37 62,49 69,72 50,58 31,72 38,49 20,37 42.5,37" strokeWidth="1.5"/>;
+  if (m==='pearl') return (<><circle {...p} cx="50" cy="36" r="18"/><line x1="50" y1="54" x2="50" y2="63" stroke={G} strokeWidth="1.5" opacity="0.18"/><circle {...p} cx="50" cy="70" r="8"/></>);
+  if (m==='stack') return (<><ellipse {...p} cx="50" cy="33" rx="24" ry="9"/><ellipse {...p} cx="50" cy="50" rx="27" ry="10"/><ellipse {...p} cx="50" cy="67" rx="22" ry="8"/></>);
+  return null;
+};
+
+const PImg = ({ m }) => (
+  <div className="product-img-inner" style={{ background:'#0C0C0C', aspectRatio:'1', position:'relative' }}>
+    <svg viewBox="0 0 100 100" style={{ position:'absolute', inset:0, width:'100%', height:'100%', padding:'18%' }}>
+      {renderMotif(m)}
+    </svg>
+  </div>
+);
+
+// ─── ATOMS ────────────────────────────────────────────────────────────────────
+const Moon = ({ s=24, c=G, op=1, st={} }) => (
+  <svg width={s} height={s} viewBox="0 0 24 24" fill={c} style={{ opacity:op, ...st }} aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
+
+const Logo = ({ size=20 }) => (
+  <a href="index.html" style={{ display:'flex', alignItems:'center', gap:'8px', userSelect:'none', cursor:'pointer' }}>
+    <Moon s={size}/>
+    <span style={{ fontFamily:FH, fontStyle:'italic', fontSize:`${size+1}px`, fontWeight:500, letterSpacing:'0.3px' }}>slayyshine</span>
+    <span style={{ fontFamily:FB, fontSize:'7px', fontWeight:700, letterSpacing:'3px', color:G, textTransform:'uppercase', marginBottom:'-2px' }}>JEWELS</span>
+  </a>
+);
+
+// ─── NAV ──────────────────────────────────────────────────────────────────────
+const Nav = ({ activeFilter }) => {
+  const [open, setOpen] = useState(false);
+  const [sc, setSc] = useState(false);
+  useEffect(() => {
+    const fn = () => setSc(window.scrollY > 40);
+    window.addEventListener('scroll', fn, { passive:true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [open]);
+  return (
+    <>
+      <nav style={{ position:'fixed', top:0, left:0, right:0, zIndex:100, height:64, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0 clamp(1rem,5vw,3rem)', background:sc?'rgba(8,8,8,0.93)':'rgba(8,8,8,0.7)', borderBottom:'1px solid rgba(196,153,106,0.1)', backdropFilter:'blur(12px)', transition:'background .3s' }}>
+        <Logo/>
+        <div className="nav-center" style={{ position:'absolute', left:'50%', transform:'translateX(-50%)', display:'flex', gap:'2rem' }}>
+          {NAVLINKS.map(l => (
+            <a key={l.label} href={l.href} className="nav-link" style={{ fontFamily:FB, fontSize:'10px', fontWeight:500, letterSpacing:'1.5px', textTransform:'uppercase', color: activeFilter===l.id ? G : 'rgba(255,255,255,0.65)', opacity: activeFilter===l.id ? 1 : 0.65, transition:'color .2s, opacity .2s' }}>{l.label}</a>
+          ))}
+        </div>
+        <div style={{ display:'flex', alignItems:'center', gap:'18px' }}>
+          <button className="icon-btn" aria-label="Cart">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+          </button>
+          <button className="icon-btn hamburger-btn" onClick={() => setOpen(true)} aria-label="Menu">
+            <svg width="22" height="15" viewBox="0 0 22 15" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <line x1="0" y1="1" x2="22" y2="1"/><line x1="4" y1="7.5" x2="22" y2="7.5"/><line x1="0" y1="14" x2="22" y2="14"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+      <div className={`mobile-menu${open?' open':''}`} role="dialog" aria-modal="true">
+        <button className="menu-close" onClick={() => setOpen(false)}>✕</button>
+        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:'2rem', textAlign:'center' }}>
+          {NAVLINKS.map(l => (
+            <a key={l.label} href={l.href} onClick={() => setOpen(false)} style={{ fontFamily:FH, fontStyle:'italic', fontSize:'clamp(22px,5vw,34px)', color: activeFilter===l.id ? G : '#FFF', letterSpacing:'0.5px' }}>{l.label}</a>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+// ─── PRODUCT CARD ─────────────────────────────────────────────────────────────
+const PCard = ({ p, idx }) => {
+  const [hov, setHov] = useState(false);
+  const [added, setAdded] = useState(false);
+  const handleAdd = () => { setAdded(true); setTimeout(() => setAdded(false), 1800); };
+  return (
+    <div className="product-card card-enter" onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ background:S1, border:`1px solid rgba(196,153,106,${hov?0.28:0.12})`, borderRadius:'12px', overflow:'hidden', transition:'border-color .3s', animationDelay:`${idx*0.05}s` }}>
+      <div className="product-img-wrap" style={{ position:'relative' }}>
+        <PImg m={p.m}/>
+        {p.b && (
+          <span style={{ position:'absolute', top:'10px', left:'10px', background:'rgba(5,5,5,0.92)', border:`1px solid ${G}`, color:G, fontFamily:FB, fontSize:'7px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', padding:'3px 9px', borderRadius:'999px' }}>
+            {p.b}
+          </span>
+        )}
+      </div>
+      <div style={{ padding:'14px 14px 16px' }}>
+        <p style={{ fontFamily:FH, fontSize:'17px', color:'#FAF9F7', marginBottom:'4px', lineHeight:1.25 }}>{p.n}</p>
+        <p style={{ fontFamily:FB, fontSize:'10.5px', color:MUT, marginBottom:'12px' }}>{p.s}</p>
+        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:'8px' }}>
+          <span style={{ fontFamily:FB, fontSize:'14px', color:G, fontWeight:500 }}>{p.p}</span>
+          <button className="cart-btn btn-gold" onClick={handleAdd}
+            style={{ padding:'6px 14px', borderRadius:'4px', fontSize:'8.5px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', flexShrink:0, background: added ? G : 'transparent', color: added ? '#080808' : G }}>
+            {added ? '✓ Added' : 'Add to Cart'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── TRUST BAR ────────────────────────────────────────────────────────────────
+const TRUST = ['316L Medical-Grade Steel','PVD Gold Bonded','AAA Cubic Zirconia','Real Freshwater Pearls','Hypoallergenic','Waterproof','Tarnish-Free','Wears for Years'];
+const TrustBar = () => (
+  <div style={{ background:S2, padding:'12px 0', overflow:'hidden' }}>
+    <div style={{ display:'flex', animation:'marquee 32s linear infinite', width:'max-content', whiteSpace:'nowrap' }}>
+      {[...TRUST,...TRUST].map((t,i) => (
+        <span key={i} style={{ display:'inline-flex', alignItems:'center', gap:'16px', paddingRight:'16px' }}>
+          <span style={{ fontFamily:FB, fontSize:'10px', fontWeight:600, letterSpacing:'2.5px', textTransform:'uppercase', color:G }}>{t}</span>
+          <span style={{ color:G, fontSize:'7px', opacity:0.6 }}>◆</span>
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+// ─── MAIN SHOP ────────────────────────────────────────────────────────────────
+const Shop = () => {
+  // Read initial filter from URL hash
+  const getHashFilter = () => {
+    const h = window.location.hash.replace('#','');
+    return FILTERS.find(f => f.id === h) ? h : 'all';
+  };
+  const [filter, setFilter] = useState(getHashFilter);
+  const [key, setKey] = useState(0); // force re-animate on filter change
+
+  // Sync hash changes (browser back/fwd or external links)
+  useEffect(() => {
+    const onHash = () => { setFilter(getHashFilter()); setKey(k => k+1); };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  const handleFilter = (id) => {
+    window.location.hash = id;
+    setFilter(id);
+    setKey(k => k+1);
+  };
+
+  const visible = useMemo(() => {
+    if (filter === 'all') return ALL_PRODUCTS;
+    return ALL_PRODUCTS.filter(p => p.cats.includes(filter));
+  }, [filter]);
+
+  const activeLabel = FILTERS.find(f => f.id === filter)?.label || 'Shop All';
+
+  return (
+    <div style={{ minHeight:'100vh', background:BG }}>
+      <Nav activeFilter={filter}/>
+      <TrustBar/>
+
+      {/* Page header */}
+      <div style={{ paddingTop:'64px' }}>
+        <div style={{ padding:'clamp(40px,6vw,72px) clamp(1.5rem,5vw,3rem) 0', maxWidth:'1280px', margin:'0 auto' }}>
+          <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:'1.5rem', marginBottom:'2rem' }}>
+            <div>
+              <p style={{ fontFamily:FB, fontSize:'9px', fontWeight:600, letterSpacing:'3px', textTransform:'uppercase', color:G, marginBottom:'10px' }}>
+                {filter === 'all' ? 'Slayyshine Jewels' : FILTERS.find(f=>f.id===filter)?.label}
+              </p>
+              <h1 style={{ fontFamily:FH, fontStyle:'italic', fontSize:'clamp(30px,4vw,52px)', fontWeight:400, color:'#FAF9F7', lineHeight:1.1 }}>
+                {activeLabel}
+              </h1>
+            </div>
+            <p style={{ fontFamily:FB, fontSize:'11px', color:MUT, letterSpacing:'0.5px' }}>
+              {visible.length} {visible.length === 1 ? 'piece' : 'pieces'}
+            </p>
+          </div>
+
+          {/* Filter pills */}
+          <div style={{ display:'flex', gap:'10px', flexWrap:'wrap', paddingBottom:'2.5rem', borderBottom:'1px solid rgba(196,153,106,0.12)' }}>
+            {FILTERS.map(f => (
+              <button key={f.id} className={`filter-pill${filter===f.id?' active':''}`} onClick={() => handleFilter(f.id)}>
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Grid */}
+        <div style={{ padding:'clamp(24px,3vw,40px) clamp(1.5rem,5vw,3rem) clamp(60px,8vw,100px)', maxWidth:'1280px', margin:'0 auto' }}>
+          {visible.length > 0 ? (
+            <div key={key} className="product-grid">
+              {visible.map((p, i) => <PCard key={p.id} p={p} idx={i}/>)}
+            </div>
+          ) : (
+            <div style={{ textAlign:'center', padding:'80px 0' }}>
+              <p style={{ fontFamily:FH, fontStyle:'italic', fontSize:'24px', color:MUT }}>No pieces found.</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Footer strip */}
+      <div style={{ background:'#060606', borderTop:'1px solid rgba(196,153,106,0.1)', padding:'28px clamp(1.5rem,5vw,3rem)', display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'1rem' }}>
+        <Logo size={17}/>
+        <p style={{ fontFamily:FB, fontSize:'10px', color:'rgba(255,255,255,0.2)', letterSpacing:'0.5px' }}>
+          © 2025 Slayyshine Jewels · Made with intention
+        </p>
+        <a href="index.html" style={{ fontFamily:FB, fontSize:'10px', letterSpacing:'1.5px', color:G, textTransform:'uppercase' }}>
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Shop/>);
+</script>
+</body>
+</html>
