@@ -1,538 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slayyshine Jewels — The jewellery that doesn't leave.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --g: #C4996A; --gl: #D4A96A;
-      --bg: #080808; --s1: #111111; --s2: #0F0F0F; --s3: #0A0A0A; --s4: #0D0B08; --s5: #060606;
-      --mut: rgba(255,255,255,0.5);
-      --fh: 'Cormorant Garamond', Georgia, serif;
-      --fb: 'Jost', system-ui, sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: #fff; font-family: var(--fb); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--g); border-radius: 2px; }
-
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes grain {
-      0%,100% { transform: translate(0,0); } 20% { transform: translate(-1%,-2%); }
-      40% { transform: translate(2%,1%); } 60% { transform: translate(-2%,2%); } 80% { transform: translate(1%,-1%); }
-    }
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .grain-anim { animation: grain 8s steps(10) infinite; }
-
-    .btn-gold { border: 1px solid #C4996A; color: #C4996A; background: transparent; cursor: pointer; font-family: var(--fb); transition: background .3s, color .3s; }
-    .btn-gold:hover { background: #C4996A; color: #080808; }
-    .icon-btn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,.65); padding: 0; display: flex; align-items: center; transition: color .2s; }
-    .icon-btn:hover { color: #fff; }
-    .nav-link { transition: opacity .2s; }
-    .nav-link:hover { opacity: 1 !important; }
-    .menu-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; font-family: var(--fb); line-height: 1; }
-
-    .product-img-wrap { overflow: hidden; }
-    .product-img-inner { width: 100%; transition: transform .4s ease; }
-    .product-card:hover .product-img-inner { transform: scale(1.04); }
-    .cart-btn-desktop { opacity: 0; transition: opacity .3s; }
-    .product-card:hover .cart-btn-desktop { opacity: 1; }
-
-    .ig-item { position: relative; overflow: hidden; cursor: pointer; }
-    .ig-overlay { position: absolute; inset: 0; background: rgba(196,153,106,.88); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
-    .ig-item:hover .ig-overlay { opacity: 1; }
-
-    .mobile-menu { position: fixed; inset: 0; z-index: 200; background: rgba(8,8,8,.97); display: flex; align-items: center; justify-content: center; transform: translateX(100%); transition: transform .35s ease; }
-    .mobile-menu.open { transform: none; }
-
-    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .review-row { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
-    .review-card { flex: 0 0 min(85vw, 340px); scroll-snap-align: start; }
-    .ig-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
-    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
-    .difference-inner { display: flex; flex-direction: column; gap: 3rem; }
-    .editorial-inner { display: flex; flex-direction: column; gap: 2rem; }
-
-    @media (min-width: 640px) {
-      .review-row { overflow-x: visible; display: grid; grid-template-columns: repeat(3,1fr); scroll-snap-type: none; }
-      .review-card { flex: none; }
-    }
-    @media (min-width: 768px) {
-      .product-grid { grid-template-columns: repeat(4,1fr); }
-      .ig-grid { grid-template-columns: repeat(6,1fr); }
-      .footer-grid { grid-template-columns: 1.5fr 1fr 1.5fr; gap: 4rem; }
-      .difference-inner { flex-direction: row; align-items: flex-start; gap: 5rem; }
-      .editorial-inner { flex-direction: row; align-items: center; }
-      .hamburger-btn { display: none !important; }
-    }
-    @media (max-width: 767px) {
-      .nav-center { display: none !important; }
-      .cart-btn-desktop { opacity: 1 !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Slayyshine Jewels — Waterproof PVD Gold Demifine Jewellery India</title>
+<meta name="description" content="Demifine jewellery that doesn't leave. Waterproof, tarnish-free PVD gold on 316L stainless steel. Hypoallergenic rings, necklaces, earrings & bangles from ₹699. Free shipping above ₹999.">
+<link rel="canonical" href="https://www.slayyshine.com/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#080808">
+<meta name="color-scheme" content="dark">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Slayyshine Jewels">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Slayyshine Jewels — Waterproof PVD Gold Demifine Jewellery India">
+<meta property="og:description" content="Demifine jewellery that doesn't leave. Waterproof, tarnish-free PVD gold on 316L stainless steel. Hypoallergenic rings, necklaces, earrings & bangles from ₹699. Free shipping above ₹999.">
+<meta property="og:url" content="https://www.slayyshine.com/">
+<meta property="og:image" content="https://www.slayyshine.com/images/og-cover.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Slayyshine Jewels — Waterproof PVD Gold Demifine Jewellery India">
+<meta name="twitter:description" content="Demifine jewellery that doesn't leave. Waterproof, tarnish-free PVD gold on 316L stainless steel. Hypoallergenic rings, necklaces, earrings & bangles from ₹699. Free shipping above ₹999.">
+<meta name="twitter:image" content="https://www.slayyshine.com/images/og-cover.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<script>document.documentElement.className='js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@400;500;600&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@400;500;600&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.slayyshine.com/#org","name":"Slayyshine Jewels","url":"https://www.slayyshine.com/","logo":"https://www.slayyshine.com/images/logo.png","slogan":"The jewellery that doesn't leave.","description":"Demifine jewellery brand from India making waterproof, tarnish-free PVD gold jewellery on 316L stainless steel.","sameAs":["https://www.instagram.com/slayyshine.jewels/"]},{"@type":"WebSite","@id":"https://www.slayyshine.com/#website","url":"https://www.slayyshine.com/","name":"Slayyshine Jewels","inLanguage":"en-IN","publisher":{"@id":"https://www.slayyshine.com/#org"}},{"@type":"WebPage","@id":"https://www.slayyshine.com/#webpage","url":"https://www.slayyshine.com/","name":"Slayyshine Jewels — Demifine PVD Gold Jewellery","isPartOf":{"@id":"https://www.slayyshine.com/#website"},"about":{"@id":"https://www.slayyshine.com/#org"},"speakable":{"@type":"SpeakableSpecification","cssSelector":[".h1",".hero-sub","#difference .body"]}},{"@type":"ItemList","name":"New Arrivals","numberOfItems":8,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#celestial-moon-necklace","name":"Celestial Moon Necklace","description":"Crescent moon pendant set with AAA cubic zirconia on a paperclip chain. 316L stainless steel with PVD gold bond — waterproof and tarnish-free.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-celestial-moon-necklace","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"necklaces","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#celestial-moon-necklace","priceCurrency":"INR","price":"1499","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#serpent-stud-earrings","name":"Serpent Stud Earrings","description":"Sculpted snake-form studs in 316L stainless steel with a 2.5–5 micron PVD gold bond. Hypoallergenic and nickel-free.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-serpent-stud-earrings","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"earrings","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#serpent-stud-earrings","priceCurrency":"INR","price":"999","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#coil-snake-ring","name":"Coil Snake Ring","description":"Adjustable coiled snake ring in PVD gold-bonded 316L steel. Built for everyday wear — gym, pool and shower safe.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-coil-snake-ring","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"rings","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#coil-snake-ring","priceCurrency":"INR","price":"799","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#serpent-bangle","name":"Serpent Bangle","description":"Open-cuff serpent bangle with cubic zirconia eye detail. PVD gold on 316L stainless steel; waterproof and tarnish-free.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-serpent-bangle","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"bangles","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#serpent-bangle","priceCurrency":"INR","price":"1299","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#butterfly-midi-ring","name":"Butterfly Midi Ring","description":"Delicate stackable butterfly midi ring set with AAA cubic zirconia. Hypoallergenic PVD gold over 316L steel.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-butterfly-midi-ring","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"rings","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#butterfly-midi-ring","priceCurrency":"INR","price":"699","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":6,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#star-compass-pendant","name":"Star Compass Pendant","description":"North-star compass pendant with a cubic zirconia halo on a layering chain. PVD gold bonded, waterproof, nickel-free.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-star-compass-pendant","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"necklaces","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#star-compass-pendant","priceCurrency":"INR","price":"1399","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":7,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#pearl-drop-earrings","name":"Pearl Drop Earrings","description":"Real freshwater pearl drops on PVD gold-bonded 316L steel posts. Hypoallergenic for sensitive ears.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-pearl-drop-earrings","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"earrings","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#pearl-drop-earrings","priceCurrency":"INR","price":"1199","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}},{"@type":"ListItem","position":8,"item":{"@type":"Product","@id":"https://www.slayyshine.com/shop.html#triple-stack-set","name":"Triple Stack Set","description":"A set of three stackable rings in mixed finishes. 316L stainless steel with PVD gold bond — made to be worn every day.","image":"https://www.slayyshine.com/images/og-cover.png","sku":"SSJ-triple-stack-set","brand":{"@type":"Brand","name":"Slayyshine Jewels"},"material":"316L stainless steel, PVD gold","category":"rings","offers":{"@type":"Offer","url":"https://www.slayyshine.com/shop.html#triple-stack-set","priceCurrency":"INR","price":"1799","availability":"https://schema.org/InStock","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"https://www.slayyshine.com/#org"}}}}]},{"@type":"FAQPage","@id":"https://www.slayyshine.com/#faq","mainEntity":[{"@type":"Question","name":"What is demifine jewellery?","acceptedAnswer":{"@type":"Answer","text":"Demifine jewellery sits between fast-fashion and fine jewellery. Slayyshine pieces use 316L medical-grade stainless steel with a 2.5–5 micron PVD gold bond, so they look and last like fine jewellery at an everyday price — most pieces cost ₹699 to ₹1,799."}},{"@type":"Question","name":"Is Slayyshine jewellery waterproof?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every piece is waterproof. You can wear it in the shower, at the gym, in the pool and to bed. PVD gold is fused to the steel at a molecular level, so water and sweat do not wash it off."}},{"@type":"Question","name":"Will PVD gold jewellery tarnish or turn my skin green?","acceptedAnswer":{"@type":"Answer","text":"No. Skin turns green when cheap brass or copper reacts with sweat. Our base metal is 316L stainless steel and the gold layer is PVD bonded, so it does not tarnish, fade or discolour skin with normal wear."}},{"@type":"Question","name":"Is it safe for sensitive skin?","acceptedAnswer":{"@type":"Answer","text":"Yes. 316L stainless steel is the grade used in medical implants. Our jewellery is hypoallergenic and contains zero nickel, the most common cause of metal allergies."}},{"@type":"Question","name":"What is the difference between PVD gold and gold plating?","acceptedAnswer":{"@type":"Answer","text":"Regular gold plating is a thin wash of about 0.1 micron that rubs off in weeks. PVD (Physical Vapour Deposition) bonds gold at 2.5–5 microns in a vacuum chamber — up to 50 times thicker and far more durable."}},{"@type":"Question","name":"How long does delivery take and is shipping free?","acceptedAnswer":{"@type":"Answer","text":"Orders ship within 2–3 days across India. Shipping is free on orders above ₹999, and returns are easy."}},{"@type":"Question","name":"How should I care for my jewellery?","acceptedAnswer":{"@type":"Answer","text":"Very little care is needed. Wipe with a soft cloth to restore shine and store pieces separately to avoid scratches. Avoid harsh abrasives; water, sweat and everyday wear are fine."}}]}]}</script>
 </head>
 <body>
-<div id="root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
-
-// ─── TOKENS ───────────────────────────────────────────────────────────────────
-const G='#C4996A', GL='#D4A96A', BG='#080808';
-const S1='#111111', S2='#0F0F0F', S3='#0A0A0A', S4='#0D0B08', S5='#060606';
-const MUT='rgba(255,255,255,0.5)';
-const FH="'Cormorant Garamond',Georgia,serif", FB="'Jost',system-ui,sans-serif";
-const stripe='repeating-linear-gradient(-45deg,transparent,transparent 8px,rgba(196,153,106,0.025) 8px,rgba(196,153,106,0.025) 10px)';
-
-// ─── HOOK ─────────────────────────────────────────────────────────────────────
-// Returns [ref, className] — uses React state so reconciliation never fights us
-const useReveal = (immediate = false) => {
-  const r = useRef(null);
-  const [vis, setVis] = useState(immediate);
-  useEffect(() => {
-    if (immediate) { setVis(true); return; }
-    const el = r.current; if (!el) return;
-    const t = setTimeout(() => setVis(true), 150);
-    const o = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { clearTimeout(t); setVis(true); o.unobserve(el); }
-    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
-    o.observe(el);
-    return () => { clearTimeout(t); o.disconnect(); };
-  }, []);
-  return [r, vis ? 'reveal visible' : 'reveal'];
-};
-
-// ─── ATOMS ────────────────────────────────────────────────────────────────────
-const Moon = ({ s=24, c=G, op=1, st={} }) => (
-  <svg width={s} height={s} viewBox="0 0 24 24" fill={c} style={{ opacity:op, ...st }} aria-hidden="true">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-  </svg>
-);
-
-const Stars = () => (
-  <div style={{ display:'flex', gap:'2px' }}>
-    {[...Array(5)].map((_,i) => (
-      <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill={G} aria-hidden="true">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-      </svg>
-    ))}
-  </div>
-);
-
-const Lbl = ({ children, st={} }) => (
-  <p style={{ fontFamily:FB, fontSize:'9px', fontWeight:600, letterSpacing:'3px', textTransform:'uppercase', color:G, marginBottom:'12px', ...st }}>{children}</p>
-);
-const HLine = ({ op=0.4 }) => <div style={{ height:'1px', background:`rgba(196,153,106,${op})` }}/>;
-const GoldBtn = ({ children, st={}, ...rest }) => (
-  <button className="btn-gold" style={{ padding:'13px 38px', borderRadius:'999px', fontFamily:FB, fontSize:'11px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', ...st }} {...rest}>{children}</button>
-);
-
-const Logo = ({ size=20 }) => (
-  <div style={{ display:'flex', alignItems:'center', gap:'8px', userSelect:'none', cursor:'pointer' }}>
-    <Moon s={size}/>
-    <span style={{ fontFamily:FH, fontStyle:'italic', fontSize:`${size+1}px`, fontWeight:500, letterSpacing:'0.3px' }}>slayyshine</span>
-    <span style={{ fontFamily:FB, fontSize:'7px', fontWeight:700, letterSpacing:'3px', color:G, textTransform:'uppercase', marginBottom:'-2px' }}>JEWELS</span>
-  </div>
-);
-
-// ─── PRODUCT MOTIFS ───────────────────────────────────────────────────────────
-const renderMotif = (m) => {
-  const p = { fill:'none', stroke:G, strokeWidth:'2', opacity:'0.22' };
-  if (m==='moon') return (<><circle {...p} cx="44" cy="50" r="27"/><circle fill="#0C0C0C" stroke="none" cx="57" cy="45" r="22"/><circle {...p} cx="44" cy="50" r="27" opacity="0.18"/></>);
-  if (m==='snake') return <path {...p} d="M22 70 C28 57 42 43 53 47 C64 51 74 37 80 25" strokeLinecap="round" strokeWidth="2.5"/>;
-  if (m==='ring') return <circle {...p} cx="50" cy="50" r="26" strokeWidth="2.5"/>;
-  if (m==='bangle') return <ellipse {...p} cx="50" cy="50" rx="30" ry="16" strokeWidth="2.5"/>;
-  if (m==='butterfly') return <path {...p} d="M50 50C36 35 12 42 22 56C32 70 50 58 50 50C50 58 68 70 78 56C88 42 64 35 50 50z" strokeWidth="1.5"/>;
-  if (m==='star') return <polygon {...p} points="50,15 57.5,37 80,37 62,49 69,72 50,58 31,72 38,49 20,37 42.5,37" strokeWidth="1.5"/>;
-  if (m==='pearl') return (<><circle {...p} cx="50" cy="36" r="18"/><line x1="50" y1="54" x2="50" y2="63" stroke={G} strokeWidth="1.5" opacity="0.18"/><circle {...p} cx="50" cy="70" r="8"/></>);
-  if (m==='stack') return (<><ellipse {...p} cx="50" cy="33" rx="24" ry="9"/><ellipse {...p} cx="50" cy="50" rx="27" ry="10"/><ellipse {...p} cx="50" cy="67" rx="22" ry="8"/></>);
-  return null;
-};
-
-const PImg = ({ m }) => (
-  <div className="product-img-inner" style={{ background:'#0C0C0C', aspectRatio:'1', position:'relative' }}>
-    <svg viewBox="0 0 100 100" style={{ position:'absolute', inset:0, width:'100%', height:'100%', padding:'18%' }}>
-      {renderMotif(m)}
-    </svg>
-  </div>
-);
-
-// ─── GRAIN ────────────────────────────────────────────────────────────────────
-const Grain = () => (
-  <svg className="grain-anim" aria-hidden="true" style={{ position:'fixed', top:'-50%', left:'-50%', width:'200%', height:'200%', opacity:0.03, pointerEvents:'none', zIndex:9999 }}>
-    <filter id="gf"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/></filter>
-    <rect width="100%" height="100%" filter="url(#gf)"/>
-  </svg>
-);
-
-// ─── NAV ──────────────────────────────────────────────────────────────────────
-const NAVLINKS = [
-  { label:'Shop All',     href:'Shop.html#all' },
-  { label:'New Arrivals', href:'Shop.html#new-arrivals' },
-  { label:'Rings',        href:'Shop.html#rings' },
-  { label:'Necklaces',    href:'Shop.html#necklaces' },
-  { label:'Earrings',     href:'Shop.html#earrings' },
-  { label:'Bangles',      href:'Shop.html#bangles' },
-];
-
-const Nav = () => {
-  const [open,setOpen] = useState(false);
-  const [sc,setSc] = useState(false);
-  useEffect(() => {
-    const fn = () => setSc(window.scrollY > 40);
-    window.addEventListener('scroll', fn, { passive:true });
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
-
-  return (
-    <>
-      <nav style={{ position:'fixed', top:0, left:0, right:0, zIndex:100, height:64, display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0 clamp(1rem,5vw,3rem)', background:sc?'rgba(8,8,8,0.93)':'transparent', borderBottom:sc?'1px solid rgba(196,153,106,0.12)':'none', backdropFilter:sc?'blur(12px)':'none', transition:'background .3s, border .3s' }}>
-        <Logo/>
-        <div className="nav-center" style={{ position:'absolute', left:'50%', transform:'translateX(-50%)', display:'flex', gap:'2rem' }}>
-          {NAVLINKS.map(l => (
-            <a key={l.label} href={l.href} className="nav-link" style={{ fontFamily:FB, fontSize:'10px', fontWeight:500, letterSpacing:'1.5px', textTransform:'uppercase', color:'rgba(255,255,255,0.65)', opacity:0.65 }}>{l.label}</a>
-          ))}
-        </div>
-        <div style={{ display:'flex', alignItems:'center', gap:'18px' }}>
-          <button className="icon-btn" aria-label="Cart">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
-            </svg>
-          </button>
-          <button className="icon-btn hamburger-btn" onClick={() => setOpen(true)} aria-label="Menu">
-            <svg width="22" height="15" viewBox="0 0 22 15" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <line x1="0" y1="1" x2="22" y2="1"/><line x1="4" y1="7.5" x2="22" y2="7.5"/><line x1="0" y1="14" x2="22" y2="14"/>
-            </svg>
-          </button>
-        </div>
-      </nav>
-      <div className={`mobile-menu${open?' open':''}`} role="dialog" aria-modal="true">
-        <button className="menu-close" onClick={() => setOpen(false)}>✕</button>
-        <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:'2.2rem', textAlign:'center' }}>
-          {[...NAVLINKS,{label:'About Us',href:'#'},{label:'Our Story',href:'#'}].map(l => (
-            <a key={l.label} href={l.href} onClick={() => setOpen(false)} style={{ fontFamily:FH, fontStyle:'italic', fontSize:'clamp(22px,5vw,34px)', color:'#FFF', letterSpacing:'0.5px' }}>{l.label}</a>
-          ))}
-          <div style={{ marginTop:'1rem', display:'flex', gap:'2rem' }}>
-            <a href="#" style={{ fontFamily:FB, fontSize:'10px', letterSpacing:'2px', color:G, textTransform:'uppercase' }}>Instagram ↗</a>
-            <a href="#" style={{ fontFamily:FB, fontSize:'10px', letterSpacing:'2px', color:G, textTransform:'uppercase' }}>WhatsApp ↗</a>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-// ─── HERO ─────────────────────────────────────────────────────────────────────
-const Hero = () => {
-  const [r, cls] = useReveal(true);
-  return (
-    <section style={{ minHeight:'100vh', background:BG, display:'flex', alignItems:'center', justifyContent:'center', textAlign:'center', padding:'80px clamp(1.5rem,6vw,5rem) 80px', position:'relative', overflow:'hidden' }}>
-      <Moon s={340} op={0.05} st={{ position:'absolute', top:'-6%', right:'-7%', pointerEvents:'none' }}/>
-      <div ref={r} className={cls} style={{ maxWidth:'880px', position:'relative', zIndex:1 }}>
-        <Lbl>Demifine Jewellery</Lbl>
-        <h1 style={{ fontFamily:FH, fontSize:'clamp(40px,7.5vw,84px)', fontWeight:400, lineHeight:1.04, color:'#FAF9F7', marginBottom:'3rem', letterSpacing:'-0.5px', paddingBottom:'0.5rem' }}>
-          The jewellery that<br/><em>doesn't leave.</em>
-        </h1>
-        <p style={{ fontFamily:FB, fontSize:'13px', color:MUT, letterSpacing:'0.8px', lineHeight:1.75, maxWidth:'400px', margin:'0 auto 2.5rem' }}>
-          316L Titanium. PVD Gold. Built to be worn every single day.
-        </p>
-        <div style={{ display:'flex', gap:'1.2rem', justifyContent:'center', alignItems:'center', flexWrap:'wrap' }}>
-          <GoldBtn onClick={() => window.location.href='shop.html#all'}>Shop Now</GoldBtn>
-          <a href="#" style={{ fontFamily:FB, fontSize:'12px', color:'rgba(255,255,255,0.55)', letterSpacing:'1.5px', display:'inline-flex', alignItems:'center', gap:'7px', whiteSpace:'nowrap' }}>
-            Our Story <span style={{ color:G, fontSize:'16px' }}>→</span>
-          </a>
-        </div>
-      </div>
-      <div style={{ position:'absolute', bottom:0, left:0, right:0 }}><HLine op={0.4}/></div>
-    </section>
-  );
-};
-
-// ─── TRUST BAR ────────────────────────────────────────────────────────────────
-const TRUST = ['316L Medical-Grade Steel','PVD Gold Bonded','AAA Cubic Zirconia','Real Freshwater Pearls','Hypoallergenic','Waterproof','Tarnish-Free','Wears for Years'];
-
-const TrustBar = () => (
-  <div style={{ background:S2, padding:'14px 0', overflow:'hidden' }}>
-    <div style={{ display:'flex', animation:'marquee 32s linear infinite', width:'max-content', whiteSpace:'nowrap' }}>
-      {[...TRUST,...TRUST].map((t,i) => (
-        <span key={i} style={{ display:'inline-flex', alignItems:'center', gap:'16px', paddingRight:'16px' }}>
-          <span style={{ fontFamily:FB, fontSize:'10px', fontWeight:600, letterSpacing:'2.5px', textTransform:'uppercase', color:G }}>{t}</span>
-          <span style={{ color:G, fontSize:'7px', opacity:0.6 }}>◆</span>
-        </span>
-      ))}
-    </div>
-  </div>
-);
-
-// ─── PRODUCTS ─────────────────────────────────────────────────────────────────
-const PRODS = [
-  { id:1, n:'Celestial Moon Necklace', s:'Paperclip Chain · CZ Pendant',  p:'₹1,499', b:'NEW',        m:'moon' },
-  { id:2, n:'Serpent Stud Earrings',   s:'Snake Form · PVD Gold',          p:'₹999',   b:'BESTSELLER', m:'snake' },
-  { id:3, n:'Coil Snake Ring',         s:'Adjustable · PVD Gold',          p:'₹799',   b:null,         m:'ring' },
-  { id:4, n:'Serpent Bangle',          s:'Open Cuff · CZ Eye Detail',      p:'₹1,299', b:'NEW',        m:'bangle' },
-  { id:5, n:'Butterfly Midi Ring',     s:'Stackable · CZ Set',             p:'₹699',   b:null,         m:'butterfly' },
-  { id:6, n:'Star Compass Pendant',    s:'Layering Chain · CZ Halo',       p:'₹1,399', b:'BESTSELLER', m:'star' },
-  { id:7, n:'Pearl Drop Earrings',     s:'Freshwater Pearl · Gold Post',   p:'₹1,199', b:'NEW',        m:'pearl' },
-  { id:8, n:'Triple Stack Set',        s:'3 Rings · Mix Finish',           p:'₹1,799', b:'BESTSELLER', m:'stack' },
-];
-
-const PCard = ({ p }) => {
-  const [hov,setHov] = useState(false);
-  return (
-    <div className="product-card" onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ background:S1, border:`1px solid rgba(196,153,106,${hov?0.28:0.12})`, borderRadius:'12px', overflow:'hidden', transition:'border-color .3s' }}>
-      <div className="product-img-wrap" style={{ position:'relative' }}>
-        <PImg m={p.m}/>
-        {p.b && (
-          <span style={{ position:'absolute', top:'10px', left:'10px', background:'rgba(5,5,5,0.92)', border:`1px solid ${G}`, color:G, fontFamily:FB, fontSize:'7px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', padding:'3px 9px', borderRadius:'999px' }}>
-            {p.b}
-          </span>
-        )}
-      </div>
-      <div style={{ padding:'14px 14px 16px' }}>
-        <p style={{ fontFamily:FH, fontSize:'17px', color:'#FAF9F7', marginBottom:'5px', lineHeight:1.25 }}>{p.n}</p>
-        <p style={{ fontFamily:FB, fontSize:'10.5px', color:MUT, marginBottom:'12px', letterSpacing:'0.2px' }}>{p.s}</p>
-        <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:'8px' }}>
-          <span style={{ fontFamily:FB, fontSize:'14px', color:G, fontWeight:500 }}>{p.p}</span>
-          <button className="cart-btn-desktop btn-gold" style={{ padding:'6px 14px', borderRadius:'4px', fontSize:'8.5px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', flexShrink:0 }}>Add to Cart</button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Products = () => {
-  const [r, cls] = useReveal();
-  return (
-    <section ref={r} className={cls} style={{ background:BG, padding:'clamp(50px,8vw,90px) clamp(1.5rem,5vw,3rem)' }}>
-      <div style={{ maxWidth:'1280px', margin:'0 auto' }}>
-        <Lbl>Collection</Lbl>
-        <h2 style={{ fontFamily:FH, fontStyle:'italic', fontSize:'clamp(30px,4vw,46px)', fontWeight:400, color:'#FAF9F7', marginBottom:'2rem', lineHeight:1.1 }}>New Arrivals</h2>
-        <div className="product-grid">{PRODS.map(p => <PCard key={p.id} p={p}/>)}</div>
-      </div>
-    </section>
-  );
-};
-
-// ─── DIFFERENCE ───────────────────────────────────────────────────────────────
-const STATS = [
-  { n:'5μ',   l:'PVD Bond Thickness' },
-  { n:'316L', l:'Medical Grade Steel' },
-  { n:'AAA',  l:'Zirconia Grade' },
-  { n:'0',    l:'Nickel. Zero.' },
-];
-
-const Difference = () => {
-  const [r, cls] = useReveal();
-  return (
-    <section ref={r} className={cls} style={{ background:S3, padding:'clamp(60px,9vw,110px) clamp(1.5rem,5vw,3rem)', borderTop:'1px solid rgba(196,153,106,0.2)' }}>
-      <div style={{ maxWidth:'1280px', margin:'0 auto' }} className="difference-inner">
-        <div style={{ flex:'1 1 400px' }}>
-          <Lbl>Why Slayyshine</Lbl>
-          <h2 style={{ fontFamily:FH, fontSize:'clamp(28px,3.5vw,42px)', fontWeight:400, color:'#FAF9F7', marginBottom:'1.5rem', lineHeight:1.2 }}>
-            Not plated.<br/><em style={{ color:GL }}>Bonded.</em>
-          </h2>
-          <p style={{ fontFamily:FB, fontSize:'13px', color:MUT, lineHeight:1.9, maxWidth:'480px' }}>
-            Every other brand dips their jewellery in a 0.1 micron wash of gold and calls it plated. We use Physical Vapour Deposition — a process that fuses gold at 2.5–5 microns, at molecular level. Same process used in aerospace. Your jewellery won't remember it was ever not gold.
-          </p>
-        </div>
-        <div style={{ flex:'1 1 300px', display:'grid', gridTemplateColumns:'1fr 1fr', gap:'16px' }}>
-          {STATS.map(s => (
-            <div key={s.l} style={{ padding:'28px 22px', background:'rgba(196,153,106,0.04)', border:'1px solid rgba(196,153,106,0.1)', borderRadius:'8px' }}>
-              <p style={{ fontFamily:FH, fontSize:'clamp(36px,4vw,54px)', color:G, fontWeight:400, lineHeight:1, marginBottom:'10px' }}>{s.n}</p>
-              <p style={{ fontFamily:FB, fontSize:'8px', fontWeight:600, letterSpacing:'2px', textTransform:'uppercase', color:MUT }}>{s.l}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ─── EDITORIAL ────────────────────────────────────────────────────────────────
-const phBase = { background:'#0E0E0E', border:'1px solid rgba(196,153,106,0.1)', borderRadius:'4px', backgroundImage:stripe, display:'flex', alignItems:'center', justifyContent:'center' };
-const phTxt  = { fontFamily:FB, fontSize:'8px', color:'rgba(255,255,255,0.12)', letterSpacing:'2px', textTransform:'uppercase' };
-
-const Editorial = () => {
-  const [r, cls] = useReveal();
-  return (
-    <section ref={r} className={cls} style={{ background:S4, padding:'clamp(60px,8vw,100px) clamp(1.5rem,5vw,3rem)', position:'relative', overflow:'hidden' }}>
-      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at 50% 50%,rgba(196,153,106,0.04) 0%,transparent 65%)', pointerEvents:'none' }}/>
-      <div style={{ maxWidth:'1280px', margin:'0 auto' }} className="editorial-inner">
-        <div style={{ flex:'1 1 400px', position:'relative', zIndex:1 }}>
-          <h2 style={{ fontFamily:FH, fontSize:'clamp(34px,5.5vw,64px)', fontWeight:400, lineHeight:1.02, color:'#FAF9F7', marginBottom:'2.5rem' }}>
-            Wear it to the gym.<br/>Wear it to bed.<br/><em style={{ color:GL }}>Just wear it.</em>
-          </h2>
-          <a href="Shop.html#all" style={{ fontFamily:FB, fontSize:'12px', letterSpacing:'2px', color:G, textTransform:'uppercase', display:'inline-flex', alignItems:'center', gap:'8px' }}>
-            Shop All Pieces <span style={{ fontSize:'16px' }}>→</span>
-          </a>
-        </div>
-        <div style={{ flex:'1 1 380px', display:'grid', gridTemplateColumns:'1fr 1fr', gridTemplateRows:'160px 160px', gap:'10px' }}>
-          <div style={{ ...phBase, gridRow:'span 2' }}><span style={{ ...phTxt, transform:'rotate(-90deg)', whiteSpace:'nowrap' }}>Product Shot</span></div>
-          <div style={{ ...phBase }}><span style={phTxt}>Detail Shot</span></div>
-          <div style={{ ...phBase }}><span style={phTxt}>Lifestyle</span></div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ─── REVIEWS ──────────────────────────────────────────────────────────────────
-const REVS = [
-  { q:'"Wore the snake ring every day for 3 months — pool, gym, everything. Not a scratch. Not a fade. Never taking it off."', n:'Anika R.' },
-  { q:'"I\'ve spent money on \'gold\' jewellery my whole life only to have it turn my finger green in a week. This one actually stayed. I cried a little."', n:'Priya M.' },
-  { q:'"The celestial necklace looks exactly like the picture — honestly better in person. Packaging was premium too."', n:'Shreya K.' },
-];
-
-const Reviews = () => {
-  const [r, cls] = useReveal();
-  return (
-    <section ref={r} className={cls} style={{ background:BG, padding:'clamp(50px,8vw,90px) clamp(1.5rem,5vw,3rem)', borderTop:'1px solid rgba(196,153,106,0.15)' }}>
-      <div style={{ maxWidth:'1200px', margin:'0 auto' }}>
-        <Lbl st={{ textAlign:'center', marginBottom:'2rem' }}>Worn & Loved</Lbl>
-        <div className="review-row">
-          {REVS.map((rv,i) => (
-            <div key={i} className="review-card" style={{ background:S1, border:'1px solid rgba(196,153,106,0.12)', borderRadius:'12px', padding:'28px 24px' }}>
-              <Stars/>
-              <p style={{ fontFamily:FH, fontStyle:'italic', fontSize:'15px', color:'#FAF9F7', lineHeight:1.65, margin:'16px 0 20px' }}>{rv.q}</p>
-              <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
-                <span style={{ fontFamily:FB, fontSize:'11px', color:MUT }}>{rv.n}</span>
-                <span style={{ display:'inline-flex', alignItems:'center', gap:'4px' }}>
-                  <span style={{ width:'6px', height:'6px', borderRadius:'50%', background:'#4CAF50', display:'inline-block' }}/>
-                  <span style={{ fontFamily:FB, fontSize:'9px', color:'rgba(76,175,80,0.8)', letterSpacing:'0.3px' }}>Verified</span>
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ─── INSTAGRAM ────────────────────────────────────────────────────────────────
-const Instagram = () => {
-  const [r, cls] = useReveal();
-  return (
-    <section ref={r} className={cls} style={{ background:S2, padding:'clamp(50px,7vw,80px) clamp(1.5rem,5vw,3rem)' }}>
-      <div style={{ maxWidth:'1200px', margin:'0 auto' }}>
-        <Lbl st={{ textAlign:'center', marginBottom:'1.5rem', fontSize:'10px', letterSpacing:'4px' }}>@SLAYYSHINE.JEWELS</Lbl>
-        <div className="ig-grid" style={{ marginBottom:'1.5rem' }}>
-          {[...Array(6)].map((_,i) => (
-            <div key={i} className="ig-item" style={{ aspectRatio:'1', background:S1, border:'1px solid rgba(196,153,106,0.15)', backgroundImage:stripe }}>
-              <div className="ig-overlay">
-                <span style={{ fontFamily:FB, fontSize:'9px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', color:'#0A0A0A' }}>View on Instagram</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div style={{ textAlign:'center' }}>
-          <GoldBtn st={{ padding:'12px 32px', fontSize:'10px' }}>Follow Us ↗</GoldBtn>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ─── CTA BANNER ───────────────────────────────────────────────────────────────
-const CTABanner = () => {
-  const [r, cls] = useReveal();
-  return (
-    <section ref={r} className={cls} style={{ background:S4, padding:'clamp(60px,8vw,100px) clamp(1.5rem,5vw,3rem)', textAlign:'center', borderTop:'1px solid rgba(196,153,106,0.2)', borderBottom:'1px solid rgba(196,153,106,0.2)' }}>
-      <h2 style={{ fontFamily:FH, fontSize:'clamp(30px,4.5vw,52px)', fontWeight:400, color:'#FAF9F7', marginBottom:'1rem', lineHeight:1.1 }}>
-        Your skin deserves better.
-      </h2>
-      <p style={{ fontFamily:FB, fontSize:'13px', color:MUT, marginBottom:'2.5rem', letterSpacing:'0.5px' }}>
-        Free shipping above ₹999. Easy returns. Ships in 2–3 days.
-      </p>
-      <GoldBtn onClick={() => window.location.href='shop.html#all'}>Shop the Collection</GoldBtn>
-    </section>
-  );
-};
-
-// ─── FOOTER ───────────────────────────────────────────────────────────────────
-const Footer = () => {
-  const [email,setEmail] = useState('');
-  const [subbed,setSubbed] = useState(false);
-  return (
-    <footer style={{ background:S5, borderTop:'1px solid rgba(196,153,106,0.1)' }}>
-      <div style={{ maxWidth:'1280px', margin:'0 auto', padding:'clamp(50px,7vw,80px) clamp(1.5rem,5vw,3rem)' }} className="footer-grid">
-        <div>
-          <Logo size={18}/>
-          <p style={{ fontFamily:FB, fontSize:'12px', color:MUT, lineHeight:1.8, maxWidth:'260px', margin:'16px 0 24px' }}>The jewellery that doesn't leave.</p>
-          <div style={{ display:'flex', gap:'14px' }}>
-            <a href="https://instagram.com/slayyshine.jewels" className="icon-btn" aria-label="Instagram">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2"/>
-              </svg>
-            </a>
-            <a href="#" className="icon-btn" aria-label="WhatsApp">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-        <div>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.3rem 1.5rem' }}>
-            {['Shop All','New Arrivals','Rings','Necklaces','Earrings','Bangles','About Us','Our Materials','Care Guide','Contact'].map(l => (
-              <a key={l} href="#" className="nav-link" style={{ fontFamily:FB, fontSize:'11.5px', color:'rgba(255,255,255,0.48)', padding:'5px 0', display:'block', opacity:0.48 }}>{l}</a>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p style={{ fontFamily:FH, fontSize:'20px', color:'#FAF9F7', marginBottom:'8px', fontWeight:400 }}>Stay in the loop</p>
-          <p style={{ fontFamily:FB, fontSize:'11px', color:MUT, marginBottom:'1.2rem', letterSpacing:'0.3px' }}>No spam. New drops only.</p>
-          {subbed ? (
-            <p style={{ fontFamily:FH, fontStyle:'italic', fontSize:'17px', color:G }}>You're in. ✦</p>
-          ) : (
-            <div style={{ display:'flex', gap:'8px' }}>
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com"
-                style={{ flex:1, background:'rgba(255,255,255,0.04)', border:'1px solid rgba(196,153,106,0.25)', borderRadius:'4px', padding:'10px 14px', fontFamily:FB, fontSize:'12px', color:'#fff', outline:'none', caretColor:G, minWidth:0 }}/>
-              <button className="btn-gold" onClick={() => email && setSubbed(true)} style={{ padding:'10px 20px', borderRadius:'4px', fontFamily:FB, fontSize:'10px', fontWeight:600, letterSpacing:'1.5px', textTransform:'uppercase', whiteSpace:'nowrap' }}>Subscribe</button>
-            </div>
-          )}
-        </div>
-      </div>
-      <div style={{ borderTop:'1px solid rgba(255,255,255,0.05)', padding:'16px clamp(1.5rem,5vw,3rem)', textAlign:'center' }}>
-        <p style={{ fontFamily:FB, fontSize:'10px', color:'rgba(255,255,255,0.2)', letterSpacing:'0.5px' }}>© 2025 Slayyshine Jewels · Made with intention · @slayyshine.jewels</p>
-      </div>
-    </footer>
-  );
-};
-
-// ─── APP ──────────────────────────────────────────────────────────────────────
-const App = () => (
-  <>
-    <Grain/>
-    <Nav/>
-    <Hero/>
-    <TrustBar/>
-    <Products/>
-    <Difference/>
-    <Editorial/>
-    <Reviews/>
-    <Instagram/>
-    <CTABanner/>
-    <Footer/>
-  </>
-);
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap"><a class="logo" href="index.html" aria-label="Slayyshine Jewels — home"><svg width="20" height="20" viewBox="0 0 24 24" fill="#C4996A" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="logo-script">slayyshine</span><span class="logo-caps">JEWELS</span></a><nav aria-label="Primary"><ul class="nav-links"><li><a href="shop.html#all">Shop All</a></li><li><a href="shop.html#new-arrivals">New Arrivals</a></li><li><a href="shop.html#rings">Rings</a></li><li><a href="shop.html#necklaces">Necklaces</a></li><li><a href="shop.html#earrings">Earrings</a></li><li><a href="shop.html#bangles">Bangles</a></li></ul></nav><div class="nav-actions"><a class="icon-btn" href="shop.html#all" aria-label="Cart, 0 items"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count" data-n="0" aria-hidden="true">0</span></a><button class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false"><svg width="22" height="15" viewBox="0 0 22 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M0 1h22M4 7.5h18M0 14h22"/></svg></button></div></div></header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true"><button class="icon-btn menu-close" type="button" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg></button><a href="shop.html#all">Shop All</a><a href="shop.html#new-arrivals">New Arrivals</a><a href="shop.html#rings">Rings</a><a href="shop.html#necklaces">Necklaces</a><a href="shop.html#earrings">Earrings</a><a href="shop.html#bangles">Bangles</a><a href="index.html#difference">Our Materials</a><a href="index.html#faq">FAQ</a><div class="menu-social"><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank">Instagram ↗</a><a href="https://wa.me/" rel="noopener" target="_blank">WhatsApp ↗</a></div></div>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<svg class="hero-moon" viewBox="0 0 24 24" fill="#C4996A" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+<div class="wrap">
+<p class="label">Demifine Jewellery · India</p>
+<h1 class="h1" id="hero-title">The jewellery that <em>doesn't leave.</em></h1>
+<p class="hero-sub">316L Steel. PVD Gold. Built to be worn every single day.</p>
+<div class="hero-ctas"><a class="btn" href="shop.html#all">Shop Now</a><a class="tlink" href="#difference">Our Story <span aria-hidden="true">→</span></a></div>
+</div>
+</section>
+<div class="ticker" aria-label="Materials and promises"><div class="ticker-track"><ul><li>316L Medical-Grade Steel</li><li>PVD Gold Bonded</li><li>AAA Cubic Zirconia</li><li>Real Freshwater Pearls</li><li>Hypoallergenic</li><li>Waterproof</li><li>Tarnish-Free</li><li>Wears for Years</li></ul><ul aria-hidden="true"><li>316L Medical-Grade Steel</li><li>PVD Gold Bonded</li><li>AAA Cubic Zirconia</li><li>Real Freshwater Pearls</li><li>Hypoallergenic</li><li>Waterproof</li><li>Tarnish-Free</li><li>Wears for Years</li></ul></div></div>
+<section class="section" id="new-arrivals" aria-labelledby="na-title"><div class="wrap">
+<div class="sec-head"><div><p class="label">Collection</p><h2 class="h2" id="na-title"><em>New Arrivals</em></h2></div><a class="tlink" href="shop.html#all">View all <span aria-hidden="true">→</span></a></div>
+<ul class="grid"><li class="card reveal" id="celestial-moon-necklace" data-cats="necklaces new-arrivals"><div class="card-media" role="img" aria-label="Celestial Moon Necklace — Paperclip Chain · CZ Pendant"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" d="M70 58A27 27 0 1 1 42 23a21 21 0 0 0 28 35z"/></svg><span class="badge">NEW</span></div><div class="card-body"><h3 class="card-title">Celestial Moon Necklace</h3><p class="card-sub">Paperclip Chain · CZ Pendant</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹1,499</p><button class="add" type="button" data-id="celestial-moon-necklace" data-name="Celestial Moon Necklace" aria-label="Add Celestial Moon Necklace to cart">Add to Cart</button></div></div></li><li class="card reveal" id="serpent-stud-earrings" data-cats="earrings"><div class="card-media" role="img" aria-label="Serpent Stud Earrings — Snake Form · PVD Gold"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" stroke-width="2.5" stroke-linecap="round" d="M22 70C28 57 42 43 53 47s21-10 27-22"/></svg><span class="badge">BESTSELLER</span></div><div class="card-body"><h3 class="card-title">Serpent Stud Earrings</h3><p class="card-sub">Snake Form · PVD Gold</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹999</p><button class="add" type="button" data-id="serpent-stud-earrings" data-name="Serpent Stud Earrings" aria-label="Add Serpent Stud Earrings to cart">Add to Cart</button></div></div></li><li class="card reveal" id="coil-snake-ring" data-cats="rings"><div class="card-media" role="img" aria-label="Coil Snake Ring — Adjustable · PVD Gold"><svg viewBox="0 0 100 100" aria-hidden="true"><circle fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" stroke-width="2.5" cx="50" cy="50" r="26"/></svg></div><div class="card-body"><h3 class="card-title">Coil Snake Ring</h3><p class="card-sub">Adjustable · PVD Gold</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹799</p><button class="add" type="button" data-id="coil-snake-ring" data-name="Coil Snake Ring" aria-label="Add Coil Snake Ring to cart">Add to Cart</button></div></div></li><li class="card reveal" id="serpent-bangle" data-cats="bangles new-arrivals"><div class="card-media" role="img" aria-label="Serpent Bangle — Open Cuff · CZ Eye Detail"><svg viewBox="0 0 100 100" aria-hidden="true"><ellipse fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" stroke-width="2.5" cx="50" cy="50" rx="30" ry="16"/></svg><span class="badge">NEW</span></div><div class="card-body"><h3 class="card-title">Serpent Bangle</h3><p class="card-sub">Open Cuff · CZ Eye Detail</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹1,299</p><button class="add" type="button" data-id="serpent-bangle" data-name="Serpent Bangle" aria-label="Add Serpent Bangle to cart">Add to Cart</button></div></div></li><li class="card reveal" id="butterfly-midi-ring" data-cats="rings"><div class="card-media" role="img" aria-label="Butterfly Midi Ring — Stackable · CZ Set"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" stroke-width="1.5" d="M50 50C36 35 12 42 22 56s28 2 28-6c0 8 18 20 28 6S64 35 50 50z"/></svg></div><div class="card-body"><h3 class="card-title">Butterfly Midi Ring</h3><p class="card-sub">Stackable · CZ Set</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹699</p><button class="add" type="button" data-id="butterfly-midi-ring" data-name="Butterfly Midi Ring" aria-label="Add Butterfly Midi Ring to cart">Add to Cart</button></div></div></li><li class="card reveal" id="star-compass-pendant" data-cats="necklaces"><div class="card-media" role="img" aria-label="Star Compass Pendant — Layering Chain · CZ Halo"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" stroke-width="1.5" points="50,15 57.5,37 80,37 62,49 69,72 50,58 31,72 38,49 20,37 42.5,37"/></svg><span class="badge">BESTSELLER</span></div><div class="card-body"><h3 class="card-title">Star Compass Pendant</h3><p class="card-sub">Layering Chain · CZ Halo</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹1,399</p><button class="add" type="button" data-id="star-compass-pendant" data-name="Star Compass Pendant" aria-label="Add Star Compass Pendant to cart">Add to Cart</button></div></div></li><li class="card reveal" id="pearl-drop-earrings" data-cats="earrings new-arrivals"><div class="card-media" role="img" aria-label="Pearl Drop Earrings — Freshwater Pearl · Gold Post"><svg viewBox="0 0 100 100" aria-hidden="true"><circle fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" cx="50" cy="36" r="18"/><path fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" d="M50 54v9"/><circle fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" cx="50" cy="70" r="8"/></svg><span class="badge">NEW</span></div><div class="card-body"><h3 class="card-title">Pearl Drop Earrings</h3><p class="card-sub">Freshwater Pearl · Gold Post</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹1,199</p><button class="add" type="button" data-id="pearl-drop-earrings" data-name="Pearl Drop Earrings" aria-label="Add Pearl Drop Earrings to cart">Add to Cart</button></div></div></li><li class="card reveal" id="triple-stack-set" data-cats="rings"><div class="card-media" role="img" aria-label="Triple Stack Set — 3 Rings · Mix Finish"><svg viewBox="0 0 100 100" aria-hidden="true"><ellipse fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" cx="50" cy="33" rx="24" ry="9"/><ellipse fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" cx="50" cy="50" rx="27" ry="10"/><ellipse fill="none" stroke="#C4996A" stroke-width="2" opacity=".3" cx="50" cy="67" rx="22" ry="8"/></svg><span class="badge">BESTSELLER</span></div><div class="card-body"><h3 class="card-title">Triple Stack Set</h3><p class="card-sub">3 Rings · Mix Finish</p><div class="card-foot"><p class="price"><span class="sr-only">Price: </span>₹1,799</p><button class="add" type="button" data-id="triple-stack-set" data-name="Triple Stack Set" aria-label="Add Triple Stack Set to cart">Add to Cart</button></div></div></li></ul>
+</div></section>
+<section class="section diff" id="difference" aria-labelledby="diff-title"><div class="wrap">
+<div class="reveal"><p class="label">Why Slayyshine</p><h2 class="h2" id="diff-title">Not plated. <em>Bonded.</em></h2><p class="body">Every other brand dips their jewellery in a 0.1 micron wash of gold and calls it plated. We use Physical Vapour Deposition — a process that fuses gold at 2.5–5 microns, at molecular level. Same process used in aerospace. Your jewellery won't remember it was ever not gold.</p></div>
+<ul class="stats reveal"><li class="stat"><b>5μ</b><span>PVD bond thickness</span></li><li class="stat"><b>316L</b><span>Medical grade steel</span></li><li class="stat"><b>AAA</b><span>Zirconia grade</span></li><li class="stat"><b>0</b><span>Nickel. Zero.</span></li></ul>
+</div></section>
+<section class="section edit" aria-labelledby="ed-title"><div class="wrap">
+<div class="reveal"><h2 class="edit-h" id="ed-title">Wear it to the gym.<br>Wear it to bed.<br><em>Just wear it.</em></h2><a class="tlink" href="shop.html#all">Shop All Pieces <span aria-hidden="true">→</span></a></div>
+<div class="collage reveal" aria-hidden="true"><div class="ph">Product shot</div><div class="ph">Detail shot</div><div class="ph">Lifestyle</div></div>
+</div></section>
+<section class="section reviews" id="reviews" aria-labelledby="rv-title"><div class="wrap">
+<h2 class="label" id="rv-title" style="text-align:center;margin-bottom:2rem">Worn &amp; Loved</h2>
+<ul class="rev-row"><li class="rev reveal"><div class="stars" role="img" aria-label="Rated 5 out of 5"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg></div><blockquote><p>“Wore the snake ring every day for 3 months — pool, gym, everything. Not a scratch. Not a fade. Never taking it off.”</p></blockquote><footer><cite style="font-style:normal">Anika R.</cite><span class="ver">Verified buyer</span></footer></li><li class="rev reveal"><div class="stars" role="img" aria-label="Rated 5 out of 5"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg></div><blockquote><p>“I've spent money on ‘gold’ jewellery my whole life only to have it turn my finger green in a week. This one actually stayed. I cried a little.”</p></blockquote><footer><cite style="font-style:normal">Priya M.</cite><span class="ver">Verified buyer</span></footer></li><li class="rev reveal"><div class="stars" role="img" aria-label="Rated 5 out of 5"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2-6.2 3.2L7 14.2 2 9.3l6.9-1z"/></svg></div><blockquote><p>“The celestial necklace looks exactly like the picture — honestly better in person. Packaging was premium too.”</p></blockquote><footer><cite style="font-style:normal">Shreya K.</cite><span class="ver">Verified buyer</span></footer></li></ul>
+</div></section>
+<section class="section ig" aria-labelledby="ig-title"><div class="wrap">
+<h2 class="label" id="ig-title" style="font-size:11px;letter-spacing:4px">@SLAYYSHINE.JEWELS</h2>
+<ul class="ig-grid"><li><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Instagram post 1"><span>View on Instagram</span></a></li><li><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Instagram post 2"><span>View on Instagram</span></a></li><li><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Instagram post 3"><span>View on Instagram</span></a></li><li><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Instagram post 4"><span>View on Instagram</span></a></li><li><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Instagram post 5"><span>View on Instagram</span></a></li><li><a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Instagram post 6"><span>View on Instagram</span></a></li></ul>
+<a class="btn" href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank">Follow Us ↗</a>
+</div></section>
+<section class="section faq" id="faq" aria-labelledby="faq-title"><div class="wrap">
+<div><p class="label">Questions</p><h2 class="h2" id="faq-title">Everything you <em>wanted to ask.</em></h2></div>
+<div><details open><summary>What is demifine jewellery?</summary><p>Demifine jewellery sits between fast-fashion and fine jewellery. Slayyshine pieces use 316L medical-grade stainless steel with a 2.5–5 micron PVD gold bond, so they look and last like fine jewellery at an everyday price — most pieces cost ₹699 to ₹1,799.</p></details><details><summary>Is Slayyshine jewellery waterproof?</summary><p>Yes. Every piece is waterproof. You can wear it in the shower, at the gym, in the pool and to bed. PVD gold is fused to the steel at a molecular level, so water and sweat do not wash it off.</p></details><details><summary>Will PVD gold jewellery tarnish or turn my skin green?</summary><p>No. Skin turns green when cheap brass or copper reacts with sweat. Our base metal is 316L stainless steel and the gold layer is PVD bonded, so it does not tarnish, fade or discolour skin with normal wear.</p></details><details><summary>Is it safe for sensitive skin?</summary><p>Yes. 316L stainless steel is the grade used in medical implants. Our jewellery is hypoallergenic and contains zero nickel, the most common cause of metal allergies.</p></details><details><summary>What is the difference between PVD gold and gold plating?</summary><p>Regular gold plating is a thin wash of about 0.1 micron that rubs off in weeks. PVD (Physical Vapour Deposition) bonds gold at 2.5–5 microns in a vacuum chamber — up to 50 times thicker and far more durable.</p></details><details><summary>How long does delivery take and is shipping free?</summary><p>Orders ship within 2–3 days across India. Shipping is free on orders above ₹999, and returns are easy.</p></details><details><summary>How should I care for my jewellery?</summary><p>Very little care is needed. Wipe with a soft cloth to restore shine and store pieces separately to avoid scratches. Avoid harsh abrasives; water, sweat and everyday wear are fine.</p></details></div>
+</div></section>
+<section class="section cta" aria-labelledby="cta-title"><div class="wrap reveal">
+<h2 class="h2" id="cta-title">Your skin deserves better.</h2>
+<p>Free shipping above ₹999. Easy returns. Ships in 2–3 days.</p>
+<a class="btn" href="shop.html#all">Shop the Collection</a>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap foot-grid"><div><a class="logo" href="index.html" aria-label="Slayyshine Jewels — home"><svg width="20" height="20" viewBox="0 0 24 24" fill="#C4996A" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span class="logo-script">slayyshine</span><span class="logo-caps">JEWELS</span></a><p class="foot-tag">The jewellery that doesn't leave. Demifine PVD gold jewellery, designed in India.</p><div class="socials"><a class="icon-btn" href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank" aria-label="Slayyshine Jewels on Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a class="icon-btn" href="https://wa.me/" rel="noopener" target="_blank" aria-label="Chat with us on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg></a></div></div><nav aria-label="Footer"><ul><li><a href="shop.html#all">Shop All</a></li><li><a href="shop.html#new-arrivals">New Arrivals</a></li><li><a href="shop.html#rings">Rings</a></li><li><a href="shop.html#necklaces">Necklaces</a></li><li><a href="shop.html#earrings">Earrings</a></li><li><a href="shop.html#bangles">Bangles</a></li><li><a href="index.html#difference">Our Materials</a></li><li><a href="index.html#faq">Care &amp; FAQ</a></li><li><a href="index.html#reviews">Reviews</a></li><li><a href="https://wa.me/" rel="noopener" target="_blank">Contact</a></li></ul></nav><div><h2>Stay in the loop</h2><p class="muted" style="font-size:13px">No spam. New drops only.</p><form class="sub-form" novalidate><label class="sr-only" for="email">Email address</label><input id="email" type="email" name="email" placeholder="your@email.com" autocomplete="email" inputmode="email" required><button class="btn" type="submit">Subscribe</button></form><p class="sub-msg" role="status" aria-live="polite"></p></div></div><div class="foot-bar">© <span id="year">2026</span> Slayyshine Jewels · Made with intention · <a href="https://www.instagram.com/slayyshine.jewels/" rel="noopener" target="_blank">@slayyshine.jewels</a></div></footer><div class="toast" role="status" aria-live="polite"></div>
+<script src="main.js" defer></script>
 </body>
 </html>
