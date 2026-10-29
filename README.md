@@ -1,20 +1,19 @@
-# Slayyshine Jewels — website
+# Cleaning Cartel website
 
-Static, dependency-free site (HTML + CSS + JS). Mobile-first, SEO/AEO optimised.
+A static website for Cleaning Cartel: a homepage plus 8 service pages and a shared cart.
+It is plain HTML, CSS and a little vanilla JS. There is no build step and nothing to install.
 
-## Deploy on GitHub Pages
-1. Create a new GitHub repo and upload **everything in this folder** to the repo root (including the hidden `.github`, `.nojekyll` files).
-2. Repo → Settings → Pages → Source: **GitHub Actions**.
-3. Push to `main` — the included workflow publishes automatically. URL: `https://USERNAME.github.io/REPO/`.
+## Pages
+- `index.html`: the homepage
+- `residential-cleaning.html`, `commercial-cleaning.html`, `deep-cleaning.html`, `window-cleaning.html`,
+  `carpet-upholstery.html`, `handyman-repairs.html`, `move-in-move-out.html`, `sanitization.html`
+- `assets/`: images, font, `cart.js` (the cart is saved in the browser's localStorage and books via WhatsApp or a phone call)
 
-Also works as-is on Netlify, Vercel or Cloudflare Pages (drag & drop this folder, no build command).
+## Deploy
+- **GitHub Pages:** push this folder to a repo, then go to Settings → Pages → Deploy from branch → `main` / root.
+- **Netlify / Vercel / Cloudflare Pages:** import the repo. Leave the build command empty and set the output directory to `/`.
 
 ## Before going live
-- Find & replace `https://www.slayyshine.com` with your real URL in index.html, shop.html, robots.txt, sitemap.xml, llms.txt.
-- Custom domain: add a file named `CNAME` containing just your domain (e.g. `www.slayyshine.com`) and set DNS per GitHub's guide.
-- Replace `https://wa.me/` with `https://wa.me/91XXXXXXXXXX`.
-- Add real product photos to `images/` and swap the placeholder product images in the JSON-LD.
-- Submit `/sitemap.xml` in Google Search Console.
-
-## Files
-index.html · shop.html · 404.html · styles.css · main.js · robots.txt · sitemap.xml · llms.txt (AI answer engines) · site.webmanifest · favicon.svg · images/
+- Replace the placeholder phone number (+91 98765 43210) and email (hello@cleaningcartel.in) in all HTML files and in `assets/cart.js`.
+- The CS Keyna font file is a demo version, so buy a web licence before launch.
+- Once you have a domain, add `sitemap.xml` and use absolute URLs in the og:image tags.
